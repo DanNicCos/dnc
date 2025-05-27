@@ -60,11 +60,16 @@
                 0 10px 30px rgba(0, 0, 0, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
             z-index: 1000;
-            gap: 40px;
+        }
+
+        .content-wrapper {
+            width: 50%; /* Set to 50% of the screen width */
+            display: flex;
+            gap: 40px; /* Maintain gap between sections */
         }
 
         .left-section, .right-section {
-            width: calc(27.5% - 20px); /* 55% total width minus 40px gap */
+            width: auto; /* Allow sections to size automatically */
         }
 
         .left-section {
@@ -259,6 +264,11 @@
                 justify-content: space-between;
             }
 
+            .content-wrapper {
+                width: 100%; /* Full width for mobile */
+                flex-direction: column; /* Stack sections vertically */
+            }
+
             .left-section {
                 gap: 12px;
                 width: calc(100% - 40px); /* Full width for mobile */
@@ -331,19 +341,21 @@
 </head>
 <body>
     <div class="container">
-        <div class="left-section">
-            <div class="logo-container">
-                <div class="logo">
-                    <!-- Replace this placeholder with your actual image -->
-                    <!-- <img src="your-profile-image.jpg" alt="DanNicCos Profile"> -->
-                    <div class="logo-placeholder">D</div>
+        <div class="content-wrapper">
+            <div class="left-section">
+                <div class="logo-container">
+                    <div class="logo">
+                        <!-- Replace this placeholder with your actual image -->
+                        <!-- <img src="your-profile-image.jpg" alt="DanNicCos Profile"> -->
+                        <div class="logo-placeholder">D</div>
+                    </div>
                 </div>
+                <h1 class="name">DanNicCos</h1>
             </div>
-            <h1 class="name">DanNicCos</h1>
-        </div>
-        
-        <div class="right-section">
-            <p class="quote">The future belongs to me those who believe in the beauty of their dreams</p>
+            
+            <div class="right-section">
+                <p class="quote">The future belongs to me those who believe in the beauty of their dreams</p>
+            </div>
         </div>
     </div>
 
