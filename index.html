@@ -65,7 +65,9 @@
         .content-wrapper {
             width: 50%; /* Set to 50% of the screen width */
             display: flex;
+            justify-content: space-between;
             gap: 40px; /* Maintain gap between sections */
+            padding: 2rem 0;
         }
 
         .left-section, .right-section {
@@ -208,7 +210,7 @@
         }
 
         .social-links-wrapper {
-            width: 55%; /* Set to 55% of the screen width */
+            width: 50%; /* Set to 55% of the screen width */
             position: fixed;
             top: calc(85px + 1.5rem); /* Adjusted to align with the end of right-section */
             display: flex;
@@ -216,6 +218,7 @@
             z-index: 999;
             left: 50%;
             transform: translateX(-50%); /* Center align */
+            padding: 1rem 0;
         }
 
         .social-links {
@@ -228,8 +231,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
