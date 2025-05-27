@@ -201,11 +201,12 @@
         .social-links {
             position: fixed;
             top: 85px;
-            right: 40px;
             display: flex;
             gap: 12px;
             align-items: center;
             z-index: 999;
+            left: 50%;
+            transform: translateX(calc(-50% + 130px));
         }
 
         .social-link {
@@ -288,6 +289,8 @@
             .social-links {
                 top: 70px;
                 right: 20px;
+                left: auto;
+                transform: none;
                 gap: 10px;
             }
 
