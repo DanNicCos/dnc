@@ -63,6 +63,10 @@
             gap: 40px;
         }
 
+        .left-section, .right-section {
+            width: calc(17.5% - 20px); /* 35% total width minus 40px gap */
+        }
+
         .left-section {
             display: flex;
             align-items: center;
@@ -257,6 +261,7 @@
 
             .left-section {
                 gap: 12px;
+                width: calc(100% - 40px); /* Full width for mobile */
             }
 
             .logo {
