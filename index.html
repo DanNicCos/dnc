@@ -50,7 +50,7 @@
             right: 0;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
             width: 100%;
             padding: 15px 40px;
             backdrop-filter: blur(10px);
@@ -161,6 +161,7 @@
         .right-section {
             display: flex;
             align-items: center;
+            margin-left: 680px;
         }
 
         .quote {
@@ -203,6 +204,7 @@
                 padding: 12px 20px;
                 flex-wrap: wrap;
                 gap: 8px;
+                justify-content: space-between;
             }
 
             .left-section {
@@ -220,6 +222,10 @@
 
             .name {
                 font-size: 1.1rem;
+            }
+
+            .right-section {
+                margin-left: 0;
             }
 
             .quote {
