@@ -261,8 +261,8 @@
 
         /* Creative video section */
         .creative-section {
-            width: 50%;
-            margin: 2rem 0;
+            width: 100%;
+            margin-bottom: 1.5rem;
             display: flex;
             justify-content: center;
         }
@@ -279,10 +279,11 @@
         /* Carbon‐fiber sculpted panel */
         .carbon-panel {
             width: 50%;
-            height: calc(100vh - 200px);
+            height: auto;
             margin: 2rem 0 0;
             padding: 2rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             background: #1c1c1c;
@@ -367,18 +368,9 @@
                 width: 12px;
                 height: 12px;
             }
-            .creative-section {
-                width: 100%;
-                margin: 1rem 0;
-            }
-            .creative-section video {
-                border-radius: 6px;
-            }
 
             .carbon-panel {
                 width: 100%;
-                height: auto;
-                margin-top: 1rem;
                 padding: 1.5rem;
             }
         }
@@ -439,14 +431,13 @@
         </div>
     </div>
 
-    <div class="creative-section">
-        <video controls>
-            <source src="path/to/your-video.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
-    </div>
-
     <div class="carbon-panel">
+        <div class="creative-section">
+            <video controls>
+                <source src="path/to/your-video.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
         <p>Welcome to my carbon-rendered interface. Feel free to place any content here—text, images, or interactive elements all look sculpted into the screen.</p>
     </div>
 </body>
