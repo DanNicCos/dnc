@@ -259,19 +259,29 @@
             fill: #00f5ff;
         }
 
-        /* New section for old paper */
-        .old-paper {
-            width: 50%; /* Set to 50% of the screen width */
-            height: calc(100vh - 200px); /* Fill the screen height */
-            background: #f5f5dc; /* Old paper color */
-            border: 1px solid #ccc; /* Light border */
-            border-radius: 8px; /* Rounded corners */
-            padding: 10rem 0; /* Padding inside the paper */
-            font-family: 'Courier Prime', monospace; /* Typewriter font */
-            margin: 2rem 0; /* Margin for spacing */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            overflow-y: auto; /* Allow scrolling if content overflows */
-            margin-top: 9rem;
+        /* Carbon‐fiber sculpted panel */
+        .carbon-panel {
+            width: 50%;
+            height: calc(100vh - 200px);
+            margin: 2rem 0 0;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1c1c1c;
+            background-image:
+                linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.05)),
+                linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.05) 75%, rgba(255,255,255,0.05));
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            border-radius: 8px;
+            box-shadow:
+                inset 0 2px 8px rgba(0,0,0,0.8),
+                inset 0 -2px 8px rgba(255,255,255,0.05),
+                0 4px 12px rgba(0,0,0,0.5);
+            color: rgba(255,255,255,0.8);
+            font-family: 'Courier Prime', monospace;
+            text-align: center;
         }
 
         /* Responsive design */
@@ -340,9 +350,15 @@
                 width: 12px;
                 height: 12px;
             }
+
+            .carbon-panel {
+                width: 100%;
+                height: auto;
+                margin-top: 1rem;
+                padding: 1.5rem;
+            }
         }
 
-        /* Remove container float animation since it's now a navbar */
         /* Glitch effect on hover for name */
         .name:hover {
             animation: glitch 0.3s ease-in-out;
@@ -393,8 +409,8 @@
         </div>
     </div>
 
-    <div class="old-paper">
-        <p>This is a sample text that resembles an old paper. You can write your content here, and it will be displayed in a typewriter font. Feel free to add more text to make it look more authentic.</p>
+    <div class="carbon-panel">
+        <p>Welcome to my carbon-rendered interface. Feel free to place any content here—text, images, or interactive elements all look sculpted into the screen.</p>
     </div>
 </body>
 </html>
