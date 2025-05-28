@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DanNicCos</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet"> <!-- Typewriter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet"><!-- Typewriter font -->
     <style>
         * {
             margin: 0;
@@ -259,6 +259,23 @@
             fill: #00f5ff;
         }
 
+        /* Creative video section */
+        .creative-section {
+            width: 50%;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .creative-section video {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow:
+                inset 0 2px 8px rgba(0,0,0,0.8),
+                0 4px 12px rgba(0,0,0,0.5);
+        }
+
         /* Carbon‐fiber sculpted panel */
         .carbon-panel {
             width: 50%;
@@ -350,6 +367,13 @@
                 width: 12px;
                 height: 12px;
             }
+            .creative-section {
+                width: 100%;
+                margin: 1rem 0;
+            }
+            .creative-section video {
+                border-radius: 6px;
+            }
 
             .carbon-panel {
                 width: 100%;
@@ -413,6 +437,13 @@
                 </svg>
             </a>
         </div>
+    </div>
+
+    <div class="creative-section">
+        <video controls>
+            <source src="path/to/your-video.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
     </div>
 
     <div class="carbon-panel">
