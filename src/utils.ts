@@ -43,7 +43,7 @@ export function startQuoteRotation(intervalMs: number = 30000): void {
 
   function update() {
     const quote = quotes[pickIndex()];
-    el.textContent = quote;
+    el!.textContent = quote;
   }
 
   // Initial set, then repeat
