@@ -34,7 +34,7 @@ function pickIndex(): number {
  * Starts rotating quotes in the element matching `.quote`.
  * @param intervalMs How often to swap (default 30 000ms).
  */
-export function startQuoteRotation(intervalMs: number = 30000): void {
+export function startQuoteRotation(intervalMs: number = 3000): void {
   const el = document.querySelector<HTMLElement>('.quote');
   if (!el) {
     console.warn('startQuoteRotation: no element found for selector `.quote`');
