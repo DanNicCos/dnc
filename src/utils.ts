@@ -1,19 +1,19 @@
 const quotes: string[] = [
-  "The only way to do great work is to love what you do. – Steve Jobs",
-  "Life is what happens when you're busy making other plans. – John Lennon",
-  "Do not watch the clock. Do what it does. Keep going. – Sam Levenson",
-  "Success is not final, failure is not fatal: it is the courage to continue that counts. – Winston Churchill",
-  "You miss 100% of the shots you don't take. – Wayne Gretzky",
-  "I have not failed. I've just found 10,000 ways that won't work. – Thomas A. Edison",
-  "Believe you can and you're halfway there. – Theodore Roosevelt",
-  "Whether you think you can or you think you can’t, you’re right. – Henry Ford",
-  "Dream big and dare to fail. – Norman Vaughan",
-  "It always seems impossible until it's done. – Nelson Mandela",
-  "Keep your eyes on the stars, and your feet on the ground. – Theodore Roosevelt",
-  "The future belongs to those who believe in the beauty of their dreams. – Eleanor Roosevelt",
-  "Act as if what you do makes a difference. It does. – William James",
-  "Quality is not an act, it is a habit. – Aristotle",
-  "If opportunity doesn’t knock, build a door. – Milton Berle"
+  "The only way to do great work is to love what you do.",
+  "Life is what happens when you're busy making other plans.",
+  "Do not watch the clock. Do what it does. Keep going.",
+  "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+  "You miss 100% of the shots you don't take.",
+  "I have not failed. I've just found 10,000 ways that won't work.",
+  "Believe you can and you're halfway there.",
+  "Whether you think you can or you think you can’t, you’re right.",
+  "Dream big and dare to fail.",
+  "It always seems impossible until it's done.",
+  "Keep your eyes on the stars, and your feet on the ground.",
+  "The future belongs to those who believe in the beauty of their dreams.",
+  "Act as if what you do makes a difference. It does.",
+  "Quality is not an act, it is a habit.",
+  "If opportunity doesn’t knock, build a door."
 ];
 
 let lastIndex: number | null = null;
