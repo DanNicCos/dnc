@@ -429,8 +429,6 @@
             color: #ff00ff;
         }
 
-                
-
         @keyframes video-pulse {
             0%, 100% { 
                 box-shadow: 
@@ -489,7 +487,6 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.1),
                 inset 0 -1px 0 rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
-
         }
 
         .carbon-panel::before {
@@ -593,7 +590,7 @@
             animation-delay: 1s;
         } */
 
-            /* Input layer (first 3 dots) */
+        /* Input layer (first 3 dots) */
         .tech-dot:nth-child(1) { grid-column: 1; grid-row: 1; }
         .tech-dot:nth-child(2) { grid-column: 1; grid-row: 2; }
         .tech-dot:nth-child(3) { grid-column: 1; grid-row: 3; }
@@ -849,30 +846,17 @@
     </div>
 
     <div class="carbon-panel">
-        
-        
         <div class="panel-content">
             <p class="panel-text">
                 I spend my days trying to figure out AI and how to partner with it to build useful stuff. 
                 Turns out computers are great at thinking but terrible at explaining themselves—which makes two of us.
                 An adult who hasn't figured a lot of things out, but I've learned that failure is just expensive information. 
-                Writing about the messy, human side of building with AI here, and sharing half-formed thoughts at here.
+                Writing about the messy, human side of building with AI <a href="https://dnccoding.substack.com/" target="_blank" rel="noopener noreferrer">here</a>, and sharing half-formed thoughts at <a href="https://x.com/DanNicCos" target="_blank" rel="noopener noreferrer">here</a>.
                 Currently engineering intelligence while wondering how to live a full life. 
                 The jury's still out on both.
             </p>
             <h2 class="panel-title">🤍 Nic</h2>
 
-            <!-- <div class="tech-grid">
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-            </div> -->
             <div class="tech-grid">
                 <!-- Input Layer (3 nodes) -->
                 <div class="tech-dot"></div>
@@ -909,71 +893,6 @@
         </div>
     </div>
 
-    <!-- <script>
-        // Quote rotation implementation (from utils.ts)
-        const quotes = [
-            "The only way to do great work is to love what you do.",
-            "Life is what happens when you're busy making other plans.",
-            "Do not watch the clock. Do what it does. Keep going.",
-            "Success is not final, failure is not fatal: it is the courage to continue that counts.",
-            "You miss 100% of the shots you don't take.",
-            "I have not failed. I've just found 10,000 ways that won't work.",
-            "Believe you can and you're halfway there.",
-            "Whether you think you can or you think you can't, you're right.",
-            "Dream big and dare to fail.",
-            "It always seems impossible until it's done.",
-            "Keep your eyes on the stars, and your feet on the ground.",
-            "The future belongs to those who believe in the beauty of their dreams.",
-            "Act as if what you do makes a difference. It does.",
-            "Quality is not an act, it is a habit.",
-            "If opportunity doesn't knock, build a door."
-        ];
-
-        let lastIndex = null;
-
-        function pickIndex() {
-            let idx;
-            do {
-                idx = Math.floor(Math.random() * quotes.length);
-            } while (idx === lastIndex && quotes.length > 1);
-            lastIndex = idx;
-            return idx;
-        }
-
-        function startQuoteRotation(intervalMs = 5000) {
-            const el = document.querySelector('.quote');
-            if (!el) {
-                console.warn('startQuoteRotation: no element found for selector `.quote`');
-                return;
-            }
-
-            function update() {
-                if (!el) {
-                    console.warn('Quote element no longer exists, stopping rotation');
-                    return;
-                }
-                
-                // Fade out
-                el.style.opacity = '0';
-                
-                setTimeout(() => {
-                    const quote = quotes[pickIndex()];
-                    el.textContent = quote;
-                    // Fade in
-                    el.style.opacity = '1';
-                }, 250);
-            }
-
-            // Initial set, then repeat
-            update();
-            setInterval(update, intervalMs);
-        }
-
-        // Start quote rotation when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            startQuoteRotation(5000); // Rotate every 5 seconds
-        });
-    </script> -->
     <script>
         // Quote rotation implementation (from utils.ts)
         const quotes = [
