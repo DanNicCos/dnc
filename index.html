@@ -509,20 +509,104 @@
             line-height: 1.6;
             font-weight: 300;
         }
+        .panel-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00f5ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .panel-title p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .panel-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Animated gradient links for panel-text */
+        .panel-text a {
+            color: transparent;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff, #78dbff, #00f5ff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            position: relative;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: gradient-flow 4s ease-in-out infinite;
+        }
+
+        /* Animated gradient flow */
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hover effects */
+        .panel-text a:hover {
+            /* background: linear-gradient(45deg, #00f5ff, #ffffff, #ff00ff, #00f5ff); */
+            background-size: 200% 200%;
+            animation: gradient-shift-fast 2s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
+        }
+
+        @keyframes gradient-shift-fast {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Optional: Add a subtle underline effect on hover */
+        .panel-text a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #00f5ff, #ff00ff);
+            transition: width 0.3s ease;
+        }
+
+        .panel-text a:hover::after {
+            width: 100%;
+        }
+
+        /* Focus states for accessibility */
+        .panel-text a:focus {
+            outline: 1px solid rgba(0, 245, 255, 0.5);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
 
         .panel-title svg {
             width: 1.5em;
             height: 1.5em;
             fill: rgba(255, 255, 255, 1);
-            animation: pulse-glow 1.5s infinite;
+            animation: pulse-glow 5s infinite;
         }
 
         @keyframes pulse-glow {
             0%, 100% {
-                filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+                filter: drop-shadow(0 0 5px rgba(255, 0, 255, 0.5));
             }
             50% {
-                filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+                filter: drop-shadow(0 0 15px rgba(255, 255, 0, 0.8));
             }
         }
 
@@ -673,7 +757,7 @@
                 I spend my days trying to figure out AI and how to partner with it to build useful stuff. 
                 Turns out computers are great at thinking but terrible at explaining themselves—which makes two of us.
                 An adult who hasn't figured a lot of things out, but I've learned that failure is just expensive information. 
-                Writing about the messy, human side of building with AI <a href="https://dnccoding.substack.com/" target="_blank" rel="noopener noreferrer">here</a>, and sharing half-formed thoughts at <a href="https://x.com/DanNicCos" target="_blank" rel="noopener noreferrer">here</a>.
+                Writing about the messy, human side of building with AI <a href="https://dnccoding.substack.com/" target="_blank" rel="noopener noreferrer">here</a>, and sharing half-formed thoughts <a href="https://x.com/DanNicCos" target="_blank" rel="noopener noreferrer">here</a>.
                 Currently engineering intelligence while wondering how to live a full life. 
                 The jury's still out on both.
             </p>

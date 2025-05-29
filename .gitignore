@@ -6,3 +6,4 @@ package.json
 venv/
 .DS_Store
 index_BKP.html
+utils.ts
