@@ -229,7 +229,7 @@
             padding: 1rem 0;
         }
 
-        .quote-section {
+        /* .quote-section {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -255,7 +255,7 @@
             line-height: 1.3;
             max-width: 260px;
             transition: opacity 0.5s ease-in-out;
-        }
+        } */
 
         .social-links {
             display: flex;
@@ -550,136 +550,64 @@
             font-size: 0.9rem;
             line-height: 1.6;
             font-weight: 300;
-            /* max-width: 400px; */
         }
 
-        /* .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin: 1.5rem 0;
+        /* Animated gradient links for panel-text */
+        .panel-text a {
+            color: transparent;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff, #78dbff, #00f5ff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            position: relative;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            animation: gradient-flow 4s ease-in-out infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .panel-text a:hover {
+            /* background: linear-gradient(45deg, #00f5ff, #ffffff, #ff00ff, #00f5ff); */
+            background-size: 200% 200%;
+            animation: gradient-shift-fast 2s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
+        }
+
+        @keyframes gradient-shift-fast {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .panel-text a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #00f5ff, #ff00ff);
+            transition: width 0.3s ease;
+        }
+
+        .panel-text a:hover::after {
             width: 100%;
-            max-width: 300px;
-        } */
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(3, 1fr); /* Add explicit rows */
-            gap: 12px 16px;
-            margin: 1.5rem 0;
-            width: 100%;
-            max-width: 400px;
-            align-items: center;
-            justify-items: center;
         }
 
-        .tech-dot {
-            width: 8px;
-            height: 8px;
-            background: rgba(0, 245, 255, 0.3);
-            border-radius: 50%;
-            animation: dot-pulse 2s ease-in-out infinite;
+        .panel-text a:focus {
+            outline: 1px solid rgba(0, 245, 255, 0.5);
+            outline-offset: 2px;
+            border-radius: 2px;
         }
-
-        /* .tech-dot:nth-child(odd) {
-            animation-delay: 0.5s;
-        }
-
-        .tech-dot:nth-child(even) {
-            animation-delay: 1s;
-        } */
-
-        /* Input layer (first 3 dots) */
-        .tech-dot:nth-child(1) { grid-column: 1; grid-row: 1; }
-        .tech-dot:nth-child(2) { grid-column: 1; grid-row: 2; }
-        .tech-dot:nth-child(3) { grid-column: 1; grid-row: 3; }
-
-        /* Hidden layer 1 (next 3 dots) */
-        .tech-dot:nth-child(4) { grid-column: 2; grid-row: 1; }
-        .tech-dot:nth-child(5) { grid-column: 2; grid-row: 2; }
-        .tech-dot:nth-child(6) { grid-column: 2; grid-row: 3; }
-
-        /* Hidden layer 2 (next 3 dots) */
-        .tech-dot:nth-child(7) { grid-column: 3; grid-row: 1; }
-        .tech-dot:nth-child(8) { grid-column: 3; grid-row: 2; }
-        .tech-dot:nth-child(9) { grid-column: 3; grid-row: 3; }
-
-        /* Hidden layer 3 (next 3 dots) */
-        .tech-dot:nth-child(10) { grid-column: 4; grid-row: 1; }
-        .tech-dot:nth-child(11) { grid-column: 4; grid-row: 2; }
-        .tech-dot:nth-child(12) { grid-column: 4; grid-row: 3; }
-
-        /* Input layer colors */
-        .tech-dot:nth-child(1),
-        .tech-dot:nth-child(2),
-        .tech-dot:nth-child(3) {
-            background: rgba(0, 245, 255, 0.3);
-        }
-
-        /* Hidden layer 1 colors */
-        .tech-dot:nth-child(4),
-        .tech-dot:nth-child(5),
-        .tech-dot:nth-child(6) {
-            background: rgba(120, 219, 255, 0.4);
-        }
-
-        /* Hidden layer 2 colors */
-        .tech-dot:nth-child(7),
-        .tech-dot:nth-child(8),
-        .tech-dot:nth-child(9) {
-            background: rgba(180, 180, 255, 0.4);
-        }
-
-        /* Hidden layer 3 colors */
-        .tech-dot:nth-child(10),
-        .tech-dot:nth-child(11),
-        .tech-dot:nth-child(12) {
-            background: rgba(255, 120, 255, 0.4);
-        }
-
-        /* Output layer (single larger dot) */
-        .tech-dot:nth-child(13) {
-            grid-column: 5;
-            grid-row: 2; /* Center it vertically */
-            width: 12px;
-            height: 12px;
-            background: linear-gradient(45deg, #00f5ff, #ff00ff);
-            box-shadow: 
-                0 0 15px rgba(0, 245, 255, 0.6),
-                0 0 30px rgba(255, 0, 255, 0.4);
-            animation: output-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes dot-pulse {
-            0%, 100% { 
-                opacity: 0.3;
-                transform: scale(1);
-            }
-            50% { 
-                opacity: 1;
-                transform: scale(1.2);
-            }
-        }
-
-        @keyframes output-pulse {
-            0%, 100% { 
-                opacity: 0.7;
-                transform: scale(1);
-                box-shadow: 
-                    0 0 15px rgba(0, 245, 255, 0.6),
-                    0 0 30px rgba(255, 0, 255, 0.4);
-            }
-            50% { 
-                opacity: 1;
-                transform: scale(1.2);
-                box-shadow: 
-                    0 0 25px rgba(0, 245, 255, 0.8),
-                    0 0 50px rgba(255, 0, 255, 0.6),
-                    0 0 75px rgba(0, 245, 255, 0.3);
-            }
-        }
-
         /* Responsive design */
         @media (max-width: 768px) {
             :root {
@@ -735,20 +663,6 @@
                 align-items: flex-start;
             }
 
-            .quote-section {
-                width: 100%;
-            }
-
-            .quote {
-                font-size: 0.65rem;
-                max-width: none;
-            }
-
-            .quote-icon {
-                width: 16px;
-                height: 16px;
-            }
-
             .social-links {
                 align-self: flex-end;
             }
@@ -778,7 +692,6 @@
             }
         }
 
-        /* Glitch effect on hover for name */
         .name:hover {
             animation: glitch 0.3s ease-in-out;
         }
@@ -816,15 +729,6 @@
     </div>
 
     <div class="social-links-wrapper">
-        <div class="quote-section">
-            <div class="quote-icon">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
-                </svg>
-            </div>
-            <p class="quote">The future belongs to those who believe in the beauty of their dreams</p>
-        </div>
-        
         <div class="social-links">
             <a href="https://github.com/DanNicCos" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -856,27 +760,6 @@
                 The jury's still out on both.
             </p>
             <h2 class="panel-title">🤍 Nic</h2>
-
-            <div class="tech-grid">
-                <!-- Input Layer (3 nodes) -->
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <!-- Hidden Layer 1 (3 nodes) -->
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <!-- Hidden Layer 2 (3 nodes) -->
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <!-- Hidden Layer 3 (3 nodes) -->
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <!-- Output Layer (1 node - larger and glowing) -->
-                <div class="tech-dot"></div>
-            </div>
         </div>
 
         <div class="creative-section">
@@ -893,70 +776,8 @@
         </div>
     </div>
 
-    <script>
-        // Quote rotation implementation (from utils.ts)
-        const quotes = [
-            "The only way to do great work is to love what you do.",
-            "Life is what happens when you're busy making other plans.",
-            "Do not watch the clock. Do what it does. Keep going.",
-            "Success is not final, failure is not fatal: it is the courage to continue that counts.",
-            "You miss 100% of the shots you don't take.",
-            "I have not failed. I've just found 10,000 ways that won't work.",
-            "Believe you can and you're halfway there.",
-            "Whether you think you can or you think you can't, you're right.",
-            "Dream big and dare to fail.",
-            "It always seems impossible until it's done.",
-            "Keep your eyes on the stars, and your feet on the ground.",
-            "The future belongs to those who believe in the beauty of their dreams.",
-            "Act as if what you do makes a difference. It does.",
-            "Quality is not an act, it is a habit.",
-            "If opportunity doesn't knock, build a door."
-        ];
-    
-        let lastIndex = null;
-    
-        function pickIndex() {
-            let idx;
-            do {
-                idx = Math.floor(Math.random() * quotes.length);
-            } while (idx === lastIndex && quotes.length > 1);
-            lastIndex = idx;
-            return idx;
-        }
-    
-        function startQuoteRotation(intervalMs = 5000) {
-            const el = document.querySelector('.quote');
-            if (!el) {
-                console.warn('startQuoteRotation: no element found for selector `.quote`');
-                return;
-            }
-    
-            function update() {
-                if (!el) {
-                    console.warn('Quote element no longer exists, stopping rotation');
-                    return;
-                }
-                
-                // Fade out
-                el.style.opacity = '0';
-                
-                setTimeout(() => {
-                    const quote = quotes[pickIndex()];
-                    el.textContent = quote;
-                    // Fade in
-                    el.style.opacity = '1';
-                }, 250);
-            }
-    
-            // Initial set, then repeat
-            update();
-            setInterval(update, intervalMs);
-        }
-    
-        // Enhanced futuristic video functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            startQuoteRotation(5000);
-            
+    <script>  
+        document.addEventListener('DOMContentLoaded', () => {            
             const video = document.getElementById('futuristicVideo');
             const videoContainer = document.getElementById('videoContainer');
             const videoStatus = document.getElementById('videoStatus');
@@ -966,11 +787,9 @@
                 return;
             }
     
-            // Auto-play video when loaded
             video.addEventListener('loadeddata', () => {
                 video.play().catch(e => {
                     console.log('Auto-play was prevented:', e);
-                    // If autoplay fails, we can show a play button or handle gracefully
                 });
             });
     
@@ -1014,7 +833,6 @@
                 }
             });
     
-            // Optional: Click to toggle play/pause
             videoContainer.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (video.paused) {
