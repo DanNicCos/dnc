@@ -6,14 +6,14 @@ const quotes: string[] = [
   "You miss 100% of the shots you don't take.",
   "I have not failed. I've just found 10,000 ways that won't work.",
   "Believe you can and you're halfway there.",
-  "Whether you think you can or you think you can’t, you’re right.",
+  "Whether you think you can or you think you can't, you're right.",
   "Dream big and dare to fail.",
   "It always seems impossible until it's done.",
   "Keep your eyes on the stars, and your feet on the ground.",
   "The future belongs to those who believe in the beauty of their dreams.",
   "Act as if what you do makes a difference. It does.",
   "Quality is not an act, it is a habit.",
-  "If opportunity doesn’t knock, build a door."
+  "If opportunity doesn't knock, build a door."
 ];
 
 let lastIndex: number | null = null;
@@ -32,7 +32,7 @@ function pickIndex(): number {
 
 /**
  * Starts rotating quotes in the element matching `.quote`.
- * @param intervalMs How often to swap (default 30 000ms).
+ * @param intervalMs How often to swap (default 3000ms).
  */
 export function startQuoteRotation(intervalMs: number = 3000): void {
   const el = document.querySelector<HTMLElement>('.quote');
@@ -42,6 +42,12 @@ export function startQuoteRotation(intervalMs: number = 3000): void {
   }
 
   function update() {
+    // Check if element still exists before updating
+    if (!el) {
+      console.warn('Quote element no longer exists, stopping rotation');
+      return;
+    }
+    
     const quote = quotes[pickIndex()];
     el.textContent = quote;
   }
