@@ -14,20 +14,20 @@
         }
 
         body {
-            padding: 2rem;
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            padding: 2rem 0;
+            /* Updated background to match carbon-panel color palette */
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             min-height: 100vh;
             display: flex;
-            flex-direction: column; /* Add this */
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
             font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
             position: relative;
-            padding-top: calc(85px + 1.5rem + 60px); /* Add space for fixed elements */
+            padding-top: calc(85px + 3rem + 60px); /* Add space for fixed elements */
         }
 
-        /* Animated background elements */
+        /* Animated background elements - updated to match carbon-panel */
         body::before {
             content: '';
             position: absolute;
@@ -36,9 +36,9 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(0, 245, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.03) 0%, transparent 50%);
             animation: float 20s ease-in-out infinite;
         }
 
@@ -57,30 +57,38 @@
             justify-content: center;
             width: 100%;
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.02);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            /* Updated to match carbon-panel */
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid rgba(0, 245, 255, 0.2);
             box-shadow: 
                 0 10px 30px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
             z-index: 1000;
         }
 
-        .content-wrapper {
-            width: 50%;
-            display: flex;
-            justify-content: space-between;
-            gap: 40px;
-            padding: 2rem 0;
+        /* Content width variable for consistency */
+        :root {
+            --content-width: 35%;
         }
 
-        .left-section, .right-section {
-            width: auto;
+        .content-wrapper {
+            width: var(--content-width);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            padding: 2rem 0;
         }
 
         .left-section {
             display: flex;
             align-items: center;
             gap: 15px;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
         }
 
         .logo-container {
@@ -92,7 +100,8 @@
             height: 45px;
             border-radius: 50%;
             border: 2px solid transparent;
-            background: linear-gradient(45deg, #00f5ff, #ff00ff, #00ff88);
+            /* Updated to match carbon-panel color scheme */
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
             background-clip: padding-box;
             padding: 2px;
             position: relative;
@@ -124,12 +133,13 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* Updated to match theme */
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 18px;
-            color: white;
+            color: #00f5ff;
             font-weight: bold;
             font-family: 'Orbitron', monospace;
             position: relative;
@@ -156,7 +166,8 @@
             font-family: 'Orbitron', monospace;
             font-size: 1.4rem;
             font-weight: 700;
-            background: linear-gradient(45deg, #00f5ff, #ff00ff, #00ff88, #ffff00);
+            /* Updated to match carbon-panel color scheme */
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
             background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -172,56 +183,78 @@
             100% { background-position: 0% 50%; }
         }
 
-        .right-section {
+        /* Home icon styling */
+        .home-icon {
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
+            justify-content: center;
+            background: rgba(10, 10, 10, 0.8);
+            fill: rgba(255, 255, 255, 1); 
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .quote {
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.65rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.3;
-            position: relative;
-            font-style: italic;
-            max-width: 220px;
-            text-align: right;
-            transition: opacity 0.5s ease-in-out;
+        .home-icon:hover {
+            background: rgba(0, 245, 255, 0.1);
+            border-color: rgba(0, 245, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 245, 255, 0.2);
         }
 
-        .quote::before {
-            content: '"';
-            font-size: 1.5rem;
-            color: rgba(0, 245, 255, 0.4);
-            position: absolute;
-            top: -8px;
-            left: -12px;
-            font-family: 'Orbitron', monospace;
-            line-height: 1;
+        .home-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: rgba(255, 255, 255, 0.7);
+            transition: fill 0.3s ease;
         }
 
-        .quote::after {
-            content: '"';
-            font-size: 1.5rem;
-            color: rgba(255, 0, 255, 0.4);
-            position: absolute;
-            bottom: -12px;
-            right: -8px;
-            font-family: 'Orbitron', monospace;
-            line-height: 1;
+        .home-icon:hover svg {
+            fill: #00f5ff;
         }
 
         .social-links-wrapper {
-            width: 50%;
+            width: var(--content-width);
             position: fixed;
-            top: calc(85px + 1.5rem);
+            top: calc(85px + 2.5rem);
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            align-items: center;
             z-index: 999;
             left: 50%;
             transform: translateX(-50%);
             padding: 1rem 0;
+        }
+
+        .quote-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quote-icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .quote-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: rgba(0, 245, 255, 0.6);
+        }
+
+        .quote {
+            font-family: 'Orbitron', monospace;
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.3;
+            max-width: 260px;
+            transition: opacity 0.5s ease-in-out;
         }
 
         .social-links {
@@ -237,8 +270,9 @@
             width: 28px;
             height: 28px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Updated to match theme */
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid rgba(0, 245, 255, 0.2);
             transition: all 0.3s ease;
             text-decoration: none;
         }
@@ -253,7 +287,7 @@
         .social-link svg {
             width: 14px;
             height: 14px;
-            fill: rgba(255, 255, 255, 0.7);
+            fill: rgba(0, 245, 255, 0.7);
             transition: fill 0.3s ease;
         }
 
@@ -282,12 +316,14 @@
         }
 
         .video-container::before {
+            content: '';
             position: absolute;
             top: -2px;
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, #00f5ff, #ff00ff, #00ff88, #ffff00);
+            /* Updated to match carbon-panel color scheme */
+            /* background: linear-gradient(45deg, #00f5ff, #ff00ff); */
             background-size: 400% 400%;
             border-radius: 14px;
             z-index: -1;
@@ -307,6 +343,93 @@
             pointer-events: none;
             border-radius: 12px;
         }
+
+        .video-container {
+            /* Keep existing styles and ADD: */
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .video-container:hover {
+            box-shadow: 
+                0 0 50px rgba(0, 245, 255, 0.5),
+                0 0 80px rgba(255, 0, 255, 0.3),
+                inset 0 0 30px rgba(255, 255, 255, 0.1);
+            transform: scale(1.02);
+        }
+
+        /* Futuristic video overlay */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+            border-radius: 9px;
+            backdrop-filter: blur(2px);
+        }
+
+        .video-container:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .pause-icon {
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(0, 245, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .pause-icon::before,
+        .pause-icon::after {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: #00f5ff;
+            border-radius: 2px;
+            margin: 0 2px;
+        }
+
+        /* Status indicator */
+        .video-status {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 4px 8px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 12px;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.6rem;
+            color: #00f5ff;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            z-index: 11;
+        }
+
+        .video-status.playing {
+            border-color: rgba(255, 255, 255, 0.5);
+            color: #00f5ff;
+        }
+
+        .video-status.paused {
+            border-color: rgba(255, 255, 255, 0.5);
+            color: #ff00ff;
+        }
+
+                
 
         @keyframes video-pulse {
             0%, 100% { 
@@ -342,9 +465,13 @@
             z-index: 1;
         }
 
-        /* Enhanced carbon panel - minimalistic and futuristic */
+        .video-container:hover video {
+            filter: brightness(0.7);
+        }
+
+        /* Carbon panel - updated to match width with social-links-wrapper */
         .carbon-panel {
-            width: 50%;
+            width: var(--content-width); /* Matched with social-links-wrapper */
             min-height: 200px;
             display: flex;
             flex-direction: column;
@@ -362,6 +489,7 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.1),
                 inset 0 -1px 0 rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
+
         }
 
         .carbon-panel::before {
@@ -399,6 +527,14 @@
             text-align: center;
         }
 
+        .panel-content .panel-title {
+            text-align: end;
+        }
+
+        .panel-content .panel-text {
+            text-align: start;
+        }
+
         .panel-title {
             font-family: 'Orbitron', monospace;
             font-size: 1.2rem;
@@ -417,16 +553,28 @@
             font-size: 0.9rem;
             line-height: 1.6;
             font-weight: 300;
-            max-width: 400px;
+            /* max-width: 400px; */
         }
 
-        .tech-grid {
+        /* .tech-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 8px;
-            margin-top: 1.5rem;
+            margin: 1.5rem 0;
             width: 100%;
             max-width: 300px;
+        } */
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(3, 1fr); /* Add explicit rows */
+            gap: 12px 16px;
+            margin: 1.5rem 0;
+            width: 100%;
+            max-width: 400px;
+            align-items: center;
+            justify-items: center;
         }
 
         .tech-dot {
@@ -437,12 +585,73 @@
             animation: dot-pulse 2s ease-in-out infinite;
         }
 
-        .tech-dot:nth-child(odd) {
+        /* .tech-dot:nth-child(odd) {
             animation-delay: 0.5s;
         }
 
         .tech-dot:nth-child(even) {
             animation-delay: 1s;
+        } */
+
+            /* Input layer (first 3 dots) */
+        .tech-dot:nth-child(1) { grid-column: 1; grid-row: 1; }
+        .tech-dot:nth-child(2) { grid-column: 1; grid-row: 2; }
+        .tech-dot:nth-child(3) { grid-column: 1; grid-row: 3; }
+
+        /* Hidden layer 1 (next 3 dots) */
+        .tech-dot:nth-child(4) { grid-column: 2; grid-row: 1; }
+        .tech-dot:nth-child(5) { grid-column: 2; grid-row: 2; }
+        .tech-dot:nth-child(6) { grid-column: 2; grid-row: 3; }
+
+        /* Hidden layer 2 (next 3 dots) */
+        .tech-dot:nth-child(7) { grid-column: 3; grid-row: 1; }
+        .tech-dot:nth-child(8) { grid-column: 3; grid-row: 2; }
+        .tech-dot:nth-child(9) { grid-column: 3; grid-row: 3; }
+
+        /* Hidden layer 3 (next 3 dots) */
+        .tech-dot:nth-child(10) { grid-column: 4; grid-row: 1; }
+        .tech-dot:nth-child(11) { grid-column: 4; grid-row: 2; }
+        .tech-dot:nth-child(12) { grid-column: 4; grid-row: 3; }
+
+        /* Input layer colors */
+        .tech-dot:nth-child(1),
+        .tech-dot:nth-child(2),
+        .tech-dot:nth-child(3) {
+            background: rgba(0, 245, 255, 0.3);
+        }
+
+        /* Hidden layer 1 colors */
+        .tech-dot:nth-child(4),
+        .tech-dot:nth-child(5),
+        .tech-dot:nth-child(6) {
+            background: rgba(120, 219, 255, 0.4);
+        }
+
+        /* Hidden layer 2 colors */
+        .tech-dot:nth-child(7),
+        .tech-dot:nth-child(8),
+        .tech-dot:nth-child(9) {
+            background: rgba(180, 180, 255, 0.4);
+        }
+
+        /* Hidden layer 3 colors */
+        .tech-dot:nth-child(10),
+        .tech-dot:nth-child(11),
+        .tech-dot:nth-child(12) {
+            background: rgba(255, 120, 255, 0.4);
+        }
+
+        /* Output layer (single larger dot) */
+        .tech-dot:nth-child(13) {
+            grid-column: 5;
+            grid-row: 2; /* Center it vertically */
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
+            box-shadow: 
+                0 0 15px rgba(0, 245, 255, 0.6),
+                0 0 30px rgba(255, 0, 255, 0.4);
+            animation: output-pulse 2s ease-in-out infinite;
         }
 
         @keyframes dot-pulse {
@@ -456,8 +665,30 @@
             }
         }
 
+        @keyframes output-pulse {
+            0%, 100% { 
+                opacity: 0.7;
+                transform: scale(1);
+                box-shadow: 
+                    0 0 15px rgba(0, 245, 255, 0.6),
+                    0 0 30px rgba(255, 0, 255, 0.4);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.2);
+                box-shadow: 
+                    0 0 25px rgba(0, 245, 255, 0.8),
+                    0 0 50px rgba(255, 0, 255, 0.6),
+                    0 0 75px rgba(0, 245, 255, 0.3);
+            }
+        }
+
         /* Responsive design */
         @media (max-width: 768px) {
+            :root {
+                --content-width: 100%;
+            }
+
             .container {
                 padding: 12px 20px;
                 flex-wrap: wrap;
@@ -467,12 +698,12 @@
 
             .content-wrapper {
                 width: 100%;
-                flex-direction: column;
+                flex-direction: row;
+                justify-content: space-between;
             }
 
             .left-section {
                 gap: 12px;
-                width: calc(100% - 40px);
             }
 
             .logo {
@@ -488,29 +719,41 @@
                 font-size: 1.1rem;
             }
 
-            .quote {
-                font-size: 0.65rem;
-                max-width: 160px;
+            .home-icon {
+                width: 24px;
+                height: 24px;
             }
 
-            .quote::before,
-            .quote::after {
-                font-size: 1.2rem;
-            }
-
-            .quote::before {
-                top: -6px;
-                left: -8px;
-            }
-
-            .quote::after {
-                bottom: -10px;
-                right: -6px;
+            .home-icon svg {
+                width: 12px;
+                height: 12px;
             }
 
             .social-links-wrapper {
                 top: calc(70px + 1.5rem);
                 width: calc(100% - 40px);
+                padding: 0 1rem;
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .quote-section {
+                width: 100%;
+            }
+
+            .quote {
+                font-size: 0.65rem;
+                max-width: none;
+            }
+
+            .quote-icon {
+                width: 16px;
+                height: 16px;
+            }
+
+            .social-links {
+                align-self: flex-end;
             }
 
             .social-link {
@@ -524,8 +767,9 @@
             }
 
             .carbon-panel {
-                width: 100%;
+                width: calc(100% - 40px);
                 padding: 1.5rem;
+                margin: 1rem;
             }
 
             .panel-title {
@@ -565,12 +809,25 @@
             </div>
             
             <div class="right-section">
-                <p class="quote">The future belongs to those who believe in the beauty of their dreams</p>
+                <div class="home-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                    </svg>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="social-links-wrapper">
+        <div class="quote-section">
+            <div class="quote-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
+                </svg>
+            </div>
+            <p class="quote">The future belongs to those who believe in the beauty of their dreams</p>
+        </div>
+        
         <div class="social-links">
             <a href="https://github.com/DanNicCos" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -592,37 +849,68 @@
     </div>
 
     <div class="carbon-panel">
+        
+        
+        <div class="panel-content">
+            <p class="panel-text">
+                I spend my days trying to figure out AI and how to partner with it to build useful stuff. 
+                Turns out computers are great at thinking but terrible at explaining themselves—which makes two of us.
+                An adult who hasn't figured a lot of things out, but I've learned that failure is just expensive information. 
+                Writing about the messy, human side of building with AI here, and sharing half-formed thoughts at here.
+                Currently engineering intelligence while wondering how to live a full life. 
+                The jury's still out on both.
+            </p>
+            <h2 class="panel-title">🤍 Nic</h2>
+
+            <!-- <div class="tech-grid">
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+            </div> -->
+            <div class="tech-grid">
+                <!-- Input Layer (3 nodes) -->
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <!-- Hidden Layer 1 (3 nodes) -->
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <!-- Hidden Layer 2 (3 nodes) -->
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <!-- Hidden Layer 3 (3 nodes) -->
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <div class="tech-dot"></div>
+                <!-- Output Layer (1 node - larger and glowing) -->
+                <div class="tech-dot"></div>
+            </div>
+        </div>
+
         <div class="creative-section">
-            <div class="video-container">
-                <video controls>
+            <div class="video-container" id="videoContainer">
+                <video id="futuristicVideo" muted loop playsinline>
                     <source src="assets/videos/test.mp4" type="video/mp4">    
                     Your browser does not support HTML5 video.
                 </video>
-            </div>
-        </div>
-        
-        <div class="panel-content">
-            <h2 class="panel-title">Neural Interface</h2>
-            <p class="panel-text">
-                Experience the convergence of digital craftsmanship and creative vision. 
-                This space adapts to showcase dynamic content and immersive interactions.
-            </p>
-            <div class="tech-grid">
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
-                <div class="tech-dot"></div>
+                <div class="video-overlay">
+                    <div class="pause-icon"></div>
+                </div>
+                <div class="video-status" id="videoStatus">PLAYING</div>
             </div>
         </div>
     </div>
 
-    <script>
-        // Enhanced quote rotation with 5-second intervals
+    <!-- <script>
+        // Quote rotation implementation (from utils.ts)
         const quotes = [
             "The only way to do great work is to love what you do.",
             "Life is what happens when you're busy making other plans.",
@@ -681,8 +969,141 @@
             setInterval(update, intervalMs);
         }
 
+        // Start quote rotation when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             startQuoteRotation(5000); // Rotate every 5 seconds
+        });
+    </script> -->
+    <script>
+        // Quote rotation implementation (from utils.ts)
+        const quotes = [
+            "The only way to do great work is to love what you do.",
+            "Life is what happens when you're busy making other plans.",
+            "Do not watch the clock. Do what it does. Keep going.",
+            "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+            "You miss 100% of the shots you don't take.",
+            "I have not failed. I've just found 10,000 ways that won't work.",
+            "Believe you can and you're halfway there.",
+            "Whether you think you can or you think you can't, you're right.",
+            "Dream big and dare to fail.",
+            "It always seems impossible until it's done.",
+            "Keep your eyes on the stars, and your feet on the ground.",
+            "The future belongs to those who believe in the beauty of their dreams.",
+            "Act as if what you do makes a difference. It does.",
+            "Quality is not an act, it is a habit.",
+            "If opportunity doesn't knock, build a door."
+        ];
+    
+        let lastIndex = null;
+    
+        function pickIndex() {
+            let idx;
+            do {
+                idx = Math.floor(Math.random() * quotes.length);
+            } while (idx === lastIndex && quotes.length > 1);
+            lastIndex = idx;
+            return idx;
+        }
+    
+        function startQuoteRotation(intervalMs = 5000) {
+            const el = document.querySelector('.quote');
+            if (!el) {
+                console.warn('startQuoteRotation: no element found for selector `.quote`');
+                return;
+            }
+    
+            function update() {
+                if (!el) {
+                    console.warn('Quote element no longer exists, stopping rotation');
+                    return;
+                }
+                
+                // Fade out
+                el.style.opacity = '0';
+                
+                setTimeout(() => {
+                    const quote = quotes[pickIndex()];
+                    el.textContent = quote;
+                    // Fade in
+                    el.style.opacity = '1';
+                }, 250);
+            }
+    
+            // Initial set, then repeat
+            update();
+            setInterval(update, intervalMs);
+        }
+    
+        // Enhanced futuristic video functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            startQuoteRotation(5000);
+            
+            const video = document.getElementById('futuristicVideo');
+            const videoContainer = document.getElementById('videoContainer');
+            const videoStatus = document.getElementById('videoStatus');
+            
+            if (!video || !videoContainer || !videoStatus) {
+                console.warn('Video elements not found');
+                return;
+            }
+    
+            // Auto-play video when loaded
+            video.addEventListener('loadeddata', () => {
+                video.play().catch(e => {
+                    console.log('Auto-play was prevented:', e);
+                    // If autoplay fails, we can show a play button or handle gracefully
+                });
+            });
+    
+            // Update status indicator
+            function updateStatus(status) {
+                videoStatus.textContent = status;
+                videoStatus.className = `video-status ${status.toLowerCase()}`;
+            }
+    
+            // Video event listeners
+            video.addEventListener('play', () => updateStatus('PLAYING'));
+            video.addEventListener('pause', () => updateStatus('PAUSED'));
+            video.addEventListener('ended', () => updateStatus('ENDED'));
+    
+            // Hover functionality
+            let hoverTimeout;
+            
+            videoContainer.addEventListener('mouseenter', () => {
+                clearTimeout(hoverTimeout);
+                if (!video.paused) {
+                    video.pause();
+                }
+            });
+    
+            videoContainer.addEventListener('mouseleave', () => {
+                // Add small delay to prevent flickering
+                hoverTimeout = setTimeout(() => {
+                    if (video.paused) {
+                        video.play().catch(e => {
+                            console.log('Play was prevented:', e);
+                        });
+                    }
+                }, 100);
+            });
+    
+            // Handle video loading states
+            video.addEventListener('waiting', () => updateStatus('LOADING'));
+            video.addEventListener('canplay', () => {
+                if (!video.paused) {
+                    updateStatus('PLAYING');
+                }
+            });
+    
+            // Optional: Click to toggle play/pause
+            videoContainer.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            });
         });
     </script>
 </body>
