@@ -4,735 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DanNicCos</title>
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            padding: 2rem 0;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
-            position: relative;
-            padding-top: calc(85px + 3rem + 60px);
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(0, 245, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.03) 0%, transparent 50%);
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(1deg); }
-        }
-
-        .container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            backdrop-filter: blur(10px);
-            background: rgba(10, 10, 10, 0.8);
-            border-bottom: 1px solid rgba(0, 245, 255, 0.2);
-            box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            z-index: 1000;
-        }
-
-        :root {
-            --content-width: 35%;
-        }
-
-        .content-wrapper {
-            width: var(--content-width);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 40px;
-            padding: 2rem 0;
-        }
-
-        .left-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .right-section {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-container {
-            position: relative;
-        }
-
-        .logo {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #00f5ff, #ff00ff);
-            background-clip: padding-box;
-            padding: 2px;
-            position: relative;
-            overflow: hidden;
-            animation: pulse-glow 3s ease-in-out infinite;
-        }
-
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(0, 245, 255, 0.3), transparent);
-            animation: rotate 4s linear infinite;
-        }
-
-        .logo img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            position: relative;
-            z-index: 2;
-        }
-
-        .logo-placeholder {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            color: #00f5ff;
-            font-weight: bold;
-            font-family: 'Orbitron', monospace;
-            position: relative;
-            z-index: 2;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { 
-                box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
-                transform: scale(1);
-            }
-            50% { 
-                box-shadow: 0 0 40px rgba(0, 245, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.4);
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .name {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.4rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #00f5ff, #ff00ff);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shift 8s ease infinite;
-            text-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
-            letter-spacing: 1px;
-        }
-
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .home-icon {
-            width: 46px;
-            height: 46px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(10, 10, 10, 0.8);
-            fill: rgba(255, 255, 255, 1); 
-            border: 1px solid rgba(0, 245, 255, 0.2);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .home-icon:hover {
-            background: rgba(0, 245, 255, 0.1);
-            border-color: rgba(0, 245, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 245, 255, 0.2);
-        }
-
-        .home-icon svg {
-            width: 28px;
-            height: 28px;
-            fill: rgba(255, 255, 255, 0.7);
-            transition: fill 0.3s ease;
-        }
-
-        .home-icon:hover svg {
-            fill: #00f5ff;
-        }
-
-        .social-links-wrapper {
-            width: var(--content-width);
-            position: fixed;
-            top: calc(85px + 2.5rem);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 999;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 1rem 0;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(10, 10, 10, 0.8);
-            border: 1px solid rgba(0, 245, 255, 0.2);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .social-link:hover {
-            background: rgba(0, 245, 255, 0.1);
-            border-color: rgba(0, 245, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 245, 255, 0.2);
-        }
-
-        .social-link svg {
-            width: 16px;
-            height: 16px;
-            fill: rgba(0, 245, 255, 0.7);
-            transition: fill 0.3s ease;
-        }
-
-        .social-link:hover svg {
-            fill: #00f5ff;
-        }
-
-        .creative-section {
-            width: 100%;
-            margin-bottom: 2rem;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            padding: 3px;
-            box-shadow: 
-                0 0 30px rgba(0, 245, 255, 0.3),
-                inset 0 0 20px rgba(255, 255, 255, 0.05);
-        }
-
-        .video-container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background-size: 400% 400%;
-            border-radius: 14px;
-            z-index: -1;
-            animation: gradient-border 8s ease infinite;
-        }
-
-        .video-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(45deg, transparent 40%, rgba(0, 245, 255, 0.1) 50%, transparent 60%);
-            animation: scan-line 3s linear infinite;
-            pointer-events: none;
-            border-radius: 12px;
-        }
-
-        .video-container {
-            transition: all 0.5s ease;
-            cursor: pointer;
-        }
-
-        .video-container:hover {
-            box-shadow: 
-                0 0 50px rgba(0, 245, 255, 0.5),
-                0 0 80px rgba(255, 0, 255, 0.3),
-                inset 0 0 30px rgba(255, 255, 255, 0.1);
-            transform: scale(1.02);
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 10;
-            border-radius: 9px;
-            backdrop-filter: blur(2px);
-        }
-
-        .video-container:hover .video-overlay {
-            opacity: 1;
-        }
-
-        .pause-icon {
-            width: 60px;
-            height: 60px;
-            border: 2px solid rgba(0, 245, 255, 0.8);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-        }
-
-        .pause-icon::before,
-        .pause-icon::after {
-            content: '';
-            width: 4px;
-            height: 20px;
-            background: #00f5ff;
-            border-radius: 2px;
-            margin: 0 2px;
-        }
-
-        .video-status {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            padding: 4px 8px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(0, 245, 255, 0.3);
-            border-radius: 12px;
-            font-family: 'Orbitron', monospace;
-            font-size: 0.6rem;
-            color: #00f5ff;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            z-index: 11;
-        }
-
-        .video-status.playing {
-            border-color: rgba(255, 255, 255, 0.5);
-            color: #00f5ff;
-        }
-
-        .video-status.paused {
-            border-color: rgba(255, 255, 255, 0.5);
-            color: #ff00ff;
-        }
-
-        @keyframes video-pulse {
-            0%, 100% { 
-                box-shadow: 
-                    0 0 30px rgba(0, 245, 255, 0.3),
-                    inset 0 0 20px rgba(255, 255, 255, 0.05);
-            }
-            50% { 
-                box-shadow: 
-                    0 0 50px rgba(0, 245, 255, 0.5),
-                    0 0 80px rgba(255, 0, 255, 0.2),
-                    inset 0 0 30px rgba(255, 255, 255, 0.1);
-            }
-        }
-
-        @keyframes gradient-border {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes scan-line {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .video-container video {
-            width: 100%;
-            height: auto;
-            border-radius: 9px;
-            background: #000;
-            position: relative;
-            z-index: 1;
-        }
-
-        .video-container:hover video {
-            filter: brightness(0.7);
-        }
-
-        .carbon-panel {
-            width: var(--content-width);
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: 
-                linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            border: 1px solid rgba(0, 245, 255, 0.2);
-            border-radius: 16px;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-        }
-
-        .carbon-panel::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 20%, rgba(0, 245, 255, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(255, 0, 255, 0.03) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .carbon-panel::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.1), transparent);
-            animation: panel-shine 8s linear infinite;
-        }
-
-        @keyframes panel-shine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .panel-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .panel-content .panel-title {
-            text-align: end;
-        }
-
-        .panel-content .panel-text {
-            text-align: start;
-        }
-
-        .panel-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00f5ff, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: flex;
-            justify-content: end;
-            gap: 0.5rem;
-        }
-
-        .panel-text {
-            color: rgba(255, 255, 255, 0.7);
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            font-weight: 300;
-        }
-        .panel-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00f5ff, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .panel-title p {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .panel-text {
-            color: rgba(255, 255, 255, 0.7);
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            font-weight: 300;
-        }
-
-        /* Animated gradient links for panel-text */
-        .panel-text a {
-            color: transparent;
-            background: linear-gradient(45deg, #00f5ff, #ff00ff, #78dbff, #00f5ff);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-            position: relative;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            animation: gradient-flow 4s ease-in-out infinite;
-        }
-
-        /* Animated gradient flow */
-        @keyframes gradient-flow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Hover effects */
-        .panel-text a:hover {
-            /* background: linear-gradient(45deg, #00f5ff, #ffffff, #ff00ff, #00f5ff); */
-            background-size: 200% 200%;
-            animation: gradient-shift-fast 2s ease-in-out infinite;
-            text-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
-        }
-
-        @keyframes gradient-shift-fast {
-            0% { background-position: 0% 50%; }
-            25% { background-position: 100% 0%; }
-            50% { background-position: 100% 100%; }
-            75% { background-position: 0% 100%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Optional: Add a subtle underline effect on hover */
-        .panel-text a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: linear-gradient(90deg, #00f5ff, #ff00ff);
-            transition: width 0.3s ease;
-        }
-
-        .panel-text a:hover::after {
-            width: 100%;
-        }
-
-        /* Focus states for accessibility */
-        .panel-text a:focus {
-            outline: 1px solid rgba(0, 245, 255, 0.5);
-            outline-offset: 2px;
-            border-radius: 2px;
-        }
-
-        .panel-title svg {
-            width: 1.5em;
-            height: 1.5em;
-            fill: rgba(255, 255, 255, 1);
-            animation: pulse-glow 5s infinite;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% {
-                filter: drop-shadow(0 0 5px rgba(255, 0, 255, 0.5));
-            }
-            50% {
-                filter: drop-shadow(0 0 15px rgba(255, 255, 0, 0.8));
-            }
-        }
-
-        @media (max-width: 768px) {
-            :root {
-                --content-width: 100%;
-            }
-
-            body {
-                padding-top: calc(85px + 2.5rem + 60px);
-            }
-
-            .container {
-                padding: 12px 20px;
-            }
-
-            .content-wrapper {
-                width: 100%;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                gap: 20px;
-            }
-
-            .left-section {
-                gap: 12px;
-            }
-
-            .logo {
-                width: 35px;
-                height: 35px;
-            }
-
-            .logo-placeholder {
-                font-size: 14px;
-            }
-
-            .name {
-                font-size: 1.1rem;
-            }
-
-            /* Keep home icon same size as desktop/tablet */
-            .home-icon {
-                width: 48px;
-                height: 48px;
-            }
-
-            .home-icon svg {
-                width: 28px;
-                height: 28px;
-            }
-
-            .social-links-wrapper {
-                top: calc(85px + 4.5rem);
-                padding: 0 1rem;
-                justify-content: flex-start;
-            }
-
-            .social-links {
-                gap: 12px;
-                align-items: center;
-            }
-
-            /* Keep social links same size as desktop/tablet */
-            .social-link {
-                width: 32px;
-                height: 32px;
-            }
-
-            .social-link svg {
-                width: 16px;
-                height: 16px;
-            }
-
-            .carbon-panel {
-                padding: 1.5rem;
-                margin: 1rem;
-            }
-
-            .panel-title {
-                font-size: 1rem;
-            }
-
-            .panel-text {
-                font-size: 0.8rem;
-            }
-        }
-
-        .name:hover {
-            animation: glitch 0.3s ease-in-out;
-        }
-
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
-        }
-    </style>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/css/reset.css">
+    <link rel="stylesheet" href="styles/css/variables.css">
+    <link rel="stylesheet" href="styles/css/components.css">
+    <link rel="stylesheet" href="styles/css/layout.css">
+    <link rel="stylesheet" href="styles/css/animations.css">
+    <link rel="stylesheet" href="styles/css/responsive.css">
 </head>
 <body>
-    <div class="container">
-        <div class="content-wrapper">
-            <div class="left-section">
-                <div class="logo-container">
-                    <div class="logo">
-                        <div class="logo-placeholder">D</div>
-                    </div>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="header__content">
+            <div class="header__left">
+                <div class="logo">
+                    <div class="logo__placeholder">D</div>
                 </div>
-                <h1 class="name">DanNicCos</h1>
+                <h1 class="brand-name">DanNicCos</h1>
             </div>
             
-            <div class="right-section">
-                <div class="home-icon">
+            <nav class="header__nav">
+                <button class="home-icon" aria-label="Home">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
                     </svg>
-                </div>
-            </div>
+                </button>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <div class="social-links-wrapper">
-        <div class="social-links">
+    <!-- Social Links -->
+    <div class="social-bar">
+        <nav class="social-links" aria-label="Social media links">
             <a href="https://github.com/DanNicCos" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
@@ -749,102 +57,47 @@
                     <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
                 </svg>
             </a>
-        </div>
+        </nav>
     </div>
 
-    <div class="carbon-panel">
-        <div class="panel-content">
-            <p class="panel-text">
-                I spend my days trying to figure out AI and how to partner with it to build useful stuff. 
-                Turns out computers are great at thinking but terrible at explaining themselves—which makes two of us.
-                An adult who hasn't figured a lot of things out, but I've learned that failure is just expensive information. 
-                Writing about the messy, human side of building with AI <a href="https://dnccoding.substack.com/" target="_blank" rel="noopener noreferrer">here</a>, and sharing half-formed thoughts <a href="https://x.com/DanNicCos" target="_blank" rel="noopener noreferrer">here</a>.
-                Currently engineering intelligence while wondering how to live a full life. 
-                The jury's still out on both.
-            </p>
-            <h2 class="panel-title">
-                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(45)">
-                    <path d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z" fill="rgba(255, 255, 255, 1)"></path>
-                </svg> 
-                <p>Nic</p>
-            </h2>
-        </div>
-
-        <div class="creative-section">
-            <div class="video-container" id="videoContainer">
-                <video id="futuristicVideo" muted loop playsinline>
-                    <source src="assets/videos/test.mp4" type="video/mp4">    
-                    Your browser does not support HTML5 video.
-                </video>
-                <div class="video-overlay">
-                    <div class="pause-icon"></div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <article class="content-panel">
+            <div class="panel-content">
+                <div class="about-text">
+                    I spend my days trying to figure out AI and how to partner with it to build useful stuff. 
+                    Turns out computers are great at thinking but terrible at explaining themselves—which makes two of us.
+                    An adult who hasn't figured a lot of things out, but I've learned that failure is just expensive information. 
+                    Writing about the messy, human side of building with AI <a href="https://dnccoding.substack.com/" target="_blank" rel="noopener noreferrer">here</a>, and sharing half-formed thoughts <a href="https://x.com/DanNicCos" target="_blank" rel="noopener noreferrer">here</a>.
+                    Currently engineering intelligence while wondering how to live a full life. 
+                    The jury's still out on both.
                 </div>
-                <div class="video-status" id="videoStatus">PLAYING</div>
+                
+                <div class="signature">
+                    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(45)" class="signature__icon">
+                        <path d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"/>
+                    </svg> 
+                    <span class="signature__name">Nic</span>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <script>  
-        document.addEventListener('DOMContentLoaded', () => {            
-            const video = document.getElementById('futuristicVideo');
-            const videoContainer = document.getElementById('videoContainer');
-            const videoStatus = document.getElementById('videoStatus');
-            
-            if (!video || !videoContainer || !videoStatus) {
-                console.warn('Video elements not found');
-                return;
-            }
-    
-            video.addEventListener('loadeddata', () => {
-                video.play().catch(e => {
-                    console.log('Auto-play was prevented:', e);
-                });
-            });
-    
-            function updateStatus(status) {
-                videoStatus.textContent = status;
-                videoStatus.className = `video-status ${status.toLowerCase()}`;
-            }
-    
-            video.addEventListener('play', () => updateStatus('PLAYING'));
-            video.addEventListener('pause', () => updateStatus('PAUSED'));
-            video.addEventListener('ended', () => updateStatus('ENDED'));
-    
-            let hoverTimeout;
-            
-            videoContainer.addEventListener('mouseenter', () => {
-                clearTimeout(hoverTimeout);
-                if (!video.paused) {
-                    video.pause();
-                }
-            });
-    
-            videoContainer.addEventListener('mouseleave', () => {
-                hoverTimeout = setTimeout(() => {
-                    if (video.paused) {
-                        video.play().catch(e => {
-                            console.log('Play was prevented:', e);
-                        });
-                    }
-                }, 100);
-            });
-    
-            video.addEventListener('waiting', () => updateStatus('LOADING'));
-            video.addEventListener('canplay', () => {
-                if (!video.paused) {
-                    updateStatus('PLAYING');
-                }
-            });
-    
-            videoContainer.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (video.paused) {
-                    video.play();
-                } else {
-                    video.pause();
-                }
-            });
-        });
-    </script>
+            <section class="video-showcase">
+                <div class="video-container" id="videoContainer">
+                    <video id="showcaseVideo" muted loop playsinline>
+                        <source src="assets/videos/test.mp4" type="video/mp4">    
+                        Your browser does not support HTML5 video.
+                    </video>
+                    <div class="video-overlay">
+                        <div class="pause-icon"></div>
+                    </div>
+                    <div class="video-status" id="videoStatus">PLAYING</div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <!-- Scripts -->
+    <script src="scripts/js/video-controller.js"></script>
+    <script src="scripts/js/main.js"></script>
 </body>
 </html>

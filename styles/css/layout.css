@@ -1,0 +1,96 @@
+/* Layout Styles */
+
+/* Body and Background */
+body {
+    padding: var(--space-xl) 0;
+    background: var(--gradient-background);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-top: calc(var(--header-height) + var(--social-spacing) + var(--social-bar-height));
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 245, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.03) 0%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    background: var(--color-bg-overlay);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    z-index: var(--z-header);
+    height: var(--header-height);
+}
+
+.header__content {
+    width: var(--content-width);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    padding: var(--space-xl) 0;
+}
+
+.header__left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+}
+
+/* Social Bar */
+.social-bar {
+    width: var(--content-width);
+    position: fixed;
+    top: calc(var(--header-height) + var(--social-spacing));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: var(--z-social-bar);
+    left: 50%;
+    transform: translateX(-50%);
+    /* padding: var(--space-md) 0; */
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* Main Content */
+.main-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1;
+}

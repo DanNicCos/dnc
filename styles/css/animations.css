@@ -1,0 +1,203 @@
+/* Animation Styles */
+
+/* Keyframe Animations */
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-20px) rotate(1deg); 
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { 
+        box-shadow: var(--shadow-glow);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: var(--shadow-glow-strong), 0 0 60px rgba(255, 0, 255, 0.4);
+        transform: scale(1.05);
+    }
+}
+
+@keyframes rotate {
+    0% { 
+        transform: rotate(0deg); 
+    }
+    100% { 
+        transform: rotate(360deg); 
+    }
+}
+
+@keyframes gradient-shift {
+    0% { 
+        background-position: 0% 50%; 
+    }
+    50% { 
+        background-position: 100% 50%; 
+    }
+    100% { 
+        background-position: 0% 50%; 
+    }
+}
+
+@keyframes gradient-flow {
+    0% { 
+        background-position: 0% 50%; 
+    }
+    50% { 
+        background-position: 100% 50%; 
+    }
+    100% { 
+        background-position: 0% 50%; 
+    }
+}
+
+@keyframes gradient-shift-fast {
+    0% { 
+        background-position: 0% 50%; 
+    }
+    25% { 
+        background-position: 100% 0%; 
+    }
+    50% { 
+        background-position: 100% 100%; 
+    }
+    75% { 
+        background-position: 0% 100%; 
+    }
+    100% { 
+        background-position: 0% 50%; 
+    }
+}
+
+@keyframes gradient-border {
+    0% { 
+        background-position: 0% 50%; 
+    }
+    50% { 
+        background-position: 100% 50%; 
+    }
+    100% { 
+        background-position: 0% 50%; 
+    }
+}
+
+@keyframes scan-line {
+    0% { 
+        transform: translateX(-100%); 
+    }
+    100% { 
+        transform: translateX(100%); 
+    }
+}
+
+@keyframes panel-shine {
+    0% { 
+        left: -100%; 
+    }
+    100% { 
+        left: 100%; 
+    }
+}
+
+@keyframes video-pulse {
+    0%, 100% { 
+        box-shadow: var(--shadow-glow), inset 0 0 20px rgba(255, 255, 255, 0.05);
+    }
+    50% { 
+        box-shadow: 
+            var(--shadow-glow-strong),
+            0 0 80px rgba(255, 0, 255, 0.2),
+            inset 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+}
+
+@keyframes glitch {
+    0% { 
+        transform: translate(0); 
+    }
+    20% { 
+        transform: translate(-2px, 2px); 
+    }
+    40% { 
+        transform: translate(-2px, -2px); 
+    }
+    60% { 
+        transform: translate(2px, 2px); 
+    }
+    80% { 
+        transform: translate(2px, -2px); 
+    }
+    100% { 
+        transform: translate(0); 
+    }
+}
+
+/* Icon specific animations */
+@keyframes pulse-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(255, 0, 255, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 15px rgba(255, 255, 0, 0.8));
+    }
+}
+
+/* Utility Animation Classes */
+.animate-float {
+    animation: float 20s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-rotate {
+    animation: rotate 4s linear infinite;
+}
+
+.animate-gradient-shift {
+    animation: gradient-shift 8s ease infinite;
+}
+
+.animate-gradient-flow {
+    animation: gradient-flow 4s ease-in-out infinite;
+}
+
+.animate-scan-line {
+    animation: scan-line 3s linear infinite;
+}
+
+.animate-panel-shine {
+    animation: panel-shine 8s linear infinite;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .logo::before {
+        animation: none;
+    }
+    
+    body::before {
+        animation: none;
+    }
+    
+    .brand-name {
+        animation: none;
+        background: var(--color-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}

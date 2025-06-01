@@ -1,0 +1,102 @@
+/* CSS Custom Properties (Variables) */
+:root {
+    /* Colors */
+    --color-primary: #00f5ff;
+    --color-secondary: #ff00ff;
+    --color-tertiary: #78dbff;
+    --color-accent: #ffff00;
+    
+    --color-bg-primary: #0a0a0a;
+    --color-bg-secondary: #1a1a1a;
+    --color-bg-overlay: rgba(10, 10, 10, 0.8);
+    
+    --color-text-primary: rgba(255, 255, 255, 0.9);
+    --color-text-secondary: rgba(255, 255, 255, 0.7);
+    --color-text-muted: rgba(255, 255, 255, 0.5);
+    
+    --color-border: rgba(0, 245, 255, 0.2);
+    --color-border-hover: rgba(0, 245, 255, 0.3);
+    
+    /* Typography */
+    --font-primary: 'Space Grotesk', sans-serif;
+    --font-display: 'Orbitron', monospace;
+    --font-mono: 'Courier Prime', monospace;
+    
+    --font-size-xs: 0.6rem;
+    --font-size-sm: 0.8rem;
+    --font-size-base: 0.9rem;
+    --font-size-lg: 1.1rem;
+    --font-size-xl: 1.2rem;
+    --font-size-2xl: 1.4rem;
+    
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+    --font-weight-black: 900;
+    
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.6;
+    --line-height-loose: 1.8;
+    
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    
+    /* Layout - CONSISTENT ON ALL SCREEN SIZES */
+    --content-width: 35%;
+    --header-height: 85px;
+    --social-bar-height: 60px;
+    --social-spacing: 1.5rem;
+    
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --border-radius-full: 50%;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 20px rgba(0, 245, 255, 0.3);
+    --shadow-glow-strong: 0 0 40px rgba(0, 245, 255, 0.8);
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    --gradient-background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+    --gradient-text: linear-gradient(45deg, var(--color-primary), var(--color-text-primary));
+    --gradient-border: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-tertiary));
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Z-index scale */
+    --z-background: -1;
+    --z-content: 1;
+    --z-overlay: 10;
+    --z-modal: 100;
+    --z-header: 1000;
+    --z-social-bar: 999;
+}
+
+/* NO RESPONSIVE BREAKPOINTS - Everything stays the same size */
+
+/* Responsive Width Breakpoints */
+@media screen and (max-width: 1199px) and (min-width: 768px) {
+    :root {
+        --content-width: 60%; /* Tablet - balanced readability */
+    }
+}
+
+@media screen and (max-width: 767px) {
+    :root {
+        --content-width: 85%; /* Mobile - maximum readability */
+    }
+}

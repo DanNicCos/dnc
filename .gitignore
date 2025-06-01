@@ -6,4 +6,5 @@ package.json
 venv/
 .DS_Store
 index_BKP.html
+index_VIDEO.html
 utils.ts

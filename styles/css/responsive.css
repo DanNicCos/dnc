@@ -1,0 +1,135 @@
+/* Responsive Design Styles - EXACTLY THE SAME ON ALL SCREENS */
+
+/* Only adjust positioning and padding for mobile, NO size changes */
+
+/* Mobile Styles (Up to 768px) */
+@media screen and (max-width: 768px) {
+    /* Header Mobile Adjustments - positioning only */
+    .header {
+        padding: 12px 20px;
+    }
+
+    .header__content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        padding: var(--space-md) 0;
+    }
+
+    .header__left {
+        gap: 12px;
+    }
+
+    /* Social Bar Mobile - center alignment to match content */
+    .social-bar {
+        padding: 0 var(--space-md);
+        justify-content: flex-start; /* Align left to match content panel */
+    }
+
+    /* Content Panel Mobile - positioning only */
+    .content-panel {
+        margin: var(--space-md);
+    }
+}
+
+/* Small Mobile Styles (Up to 480px) */
+@media screen and (max-width: 480px) {
+    .header {
+        padding: 8px 16px;
+    }
+
+    .header__content {
+        gap: 15px;
+    }
+
+    .header__left {
+        gap: 10px;
+    }
+
+    .social-bar {
+        padding: 0 var(--space-sm);
+        justify-content: flex-start; /* Keep left alignment */
+    }
+
+    .social-links {
+        gap: 10px;
+    }
+
+    .content-panel {
+        margin: var(--space-sm);
+    }
+}
+
+/* High DPI / Retina Display Support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo,
+    .home-icon,
+    .social-link {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Ensure minimum touch targets for accessibility */
+    .home-icon,
+    .social-link {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    /* Remove hover effects that don't work on touch */
+    .video-container:hover .video-overlay {
+        opacity: 0;
+    }
+
+    .video-container:hover video {
+        filter: none;
+    }
+
+    /* Add tap highlight color */
+    .home-icon,
+    .social-link,
+    .video-container {
+        -webkit-tap-highlight-color: rgba(0, 245, 255, 0.2);
+    }
+}
+
+/* Print Styles */
+@media print {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    .header,
+    .social-bar,
+    .video-showcase {
+        display: none !important;
+    }
+
+    .content-panel {
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        background: white !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .about-text,
+    .signature__name {
+        color: black !important;
+    }
+
+    .about-text a {
+        color: blue !important;
+        text-decoration: underline !important;
+    }
+}
