@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="styles/css/layout.css">
     <link rel="stylesheet" href="styles/css/animations.css">
     <link rel="stylesheet" href="styles/css/responsive.css">
+    <!-- Terminal Styles -->
+    <link rel="stylesheet" href="styles/css/terminal/terminal.css">
+    <link rel="stylesheet" href="styles/css/terminal/syntax-themes.css">
+    <link rel="stylesheet" href="styles/css/terminal/cursor-animations.css">
 </head>
 <body>
     <!-- Header Navigation -->
@@ -63,6 +67,49 @@
     <!-- Main Content -->
     <main class="main-content">
         <article class="content-panel">
+            <!-- Interactive Terminal Section -->
+            <section class="terminal-showcase">
+                <div class="terminal-container" id="terminalContainer">
+                    <!-- Terminal Header -->
+                    <div class="terminal-header">
+                        <div class="terminal-controls">
+                            <span class="terminal-button close"></span>
+                            <span class="terminal-button minimize"></span>
+                            <span class="terminal-button maximize"></span>
+                        </div>
+                        <div class="terminal-title">
+                            <span id="terminalTitle">~/projects/ai-experiments</span>
+                        </div>
+                        <div class="terminal-actions">
+                            <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Terminal Content -->
+                    <div class="terminal-content">
+                        <div class="terminal-prompt">
+                            <span class="prompt-user">danniccos</span>
+                            <span class="prompt-separator">@</span>
+                            <span class="prompt-host">macbook</span>
+                            <span class="prompt-path">~/projects</span>
+                            <span class="prompt-symbol">$</span>
+                        </div>
+                        <div class="terminal-output">
+                            <pre><code id="codeOutput" class="language-javascript"></code></pre>
+                            <span class="terminal-cursor" id="terminalCursor">|</span>
+                        </div>
+                        <div class="terminal-status">
+                            <span class="status-text">Click anywhere to see next project</span>
+                            <span class="status-indicator" id="statusIndicator">●</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
             <div class="panel-content">
                 <div class="about-text">
                     I spend my days trying to figure out AI and how to partner with it to build useful stuff. 
@@ -81,23 +128,15 @@
                 </div>
             </div>
 
-            <section class="video-showcase">
-                <div class="video-container" id="videoContainer">
-                    <video id="showcaseVideo" muted loop playsinline>
-                        <source src="assets/videos/test.mp4" type="video/mp4">    
-                        Your browser does not support HTML5 video.
-                    </video>
-                    <div class="video-overlay">
-                        <div class="pause-icon"></div>
-                    </div>
-                    <div class="video-status" id="videoStatus">PLAYING</div>
-                </div>
-            </section>
+            
         </article>
     </main>
 
     <!-- Scripts -->
-    <script src="scripts/js/video-controller.js"></script>
+    <script src="scripts/js/terminal/sound-manager.js"></script>
+    <script src="scripts/js/terminal/code-snippets.js"></script>
+    <script src="scripts/js/terminal/typing-engine.js"></script>
+    <script src="scripts/js/terminal/terminal-controller.js"></script>
     <script src="scripts/js/main.js"></script>
 </body>
 </html>

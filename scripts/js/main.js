@@ -5,7 +5,7 @@
 
 class DanNicCosApp {
     constructor() {
-        this.videoController = null;
+        this.terminalController = null;
         this.isInitialized = false;
         
         this.init();
@@ -35,8 +35,8 @@ class DanNicCosApp {
     }
 
     initializeComponents() {
-        // Initialize video controller
-        this.initVideoController();
+        // Initialize terminal controller (replaces video controller)
+        this.initTerminalController();
         
         // Initialize any quote rotation if utils.ts is available
         this.initQuoteRotation();
@@ -45,25 +45,18 @@ class DanNicCosApp {
         this.initSmoothScrolling();
     }
 
-    initVideoController() {
+    initTerminalController() {
         try {
-            this.videoController = new VideoController(
-                'showcaseVideo',
-                'videoContainer', 
-                'videoStatus'
-            );
+            this.terminalController = new TerminalController('terminalContainer', {
+                autoStart: true,
+                autoRotate: true,
+                rotateInterval: 10000, // 10 seconds between auto-rotations
+                typingSpeed: 50
+            });
             
-            // Listen for video status changes
-            const container = document.getElementById('videoContainer');
-            if (container) {
-                container.addEventListener('videoStatusChange', (event) => {
-                    this.onVideoStatusChange(event.detail);
-                });
-            }
-            
-            console.log('✅ Video controller initialized');
+            console.log('✅ Terminal controller initialized');
         } catch (error) {
-            console.warn('⚠️ Video controller initialization failed:', error.message);
+            console.warn('⚠️ Terminal controller initialization failed:', error.message);
         }
     }
 
@@ -196,11 +189,12 @@ class DanNicCosApp {
             }
         });
 
-        // Add role and aria-label to video container
-        const videoContainer = document.getElementById('videoContainer');
-        if (videoContainer) {
-            videoContainer.setAttribute('role', 'button');
-            videoContainer.setAttribute('aria-label', 'Play/pause showcase video');
+        // Add role and aria-label to terminal container
+        const terminalContainer = document.getElementById('terminalContainer');
+        if (terminalContainer) {
+            terminalContainer.setAttribute('role', 'application');
+            terminalContainer.setAttribute('aria-label', 'Interactive code terminal - click to cycle through code examples');
+            terminalContainer.setAttribute('tabindex', '0');
         }
     }
 
@@ -229,18 +223,19 @@ class DanNicCosApp {
 
     handleResize() {
         // Handle any resize-specific logic
-        if (this.videoController) {
-            // Potentially pause video on mobile rotation
-            if (window.innerWidth <= 768 && this.videoController.isPlaying()) {
-                this.videoController.pause();
-            }
+        if (this.terminalController) {
+            // Could add responsive terminal adjustments here
+            console.log('📱 Window resized');
         }
     }
 
     handleVisibilityChange() {
-        if (document.hidden && this.videoController) {
-            // Pause video when tab is not visible
-            this.videoController.pause();
+        if (document.hidden && this.terminalController) {
+            // Pause terminal when tab is not visible
+            this.terminalController.pauseDemo();
+        } else if (this.terminalController) {
+            // Resume terminal when tab becomes visible
+            this.terminalController.resumeDemo();
         }
     }
 
@@ -249,19 +244,31 @@ class DanNicCosApp {
         if (event.ctrlKey || event.metaKey) {
             switch (event.key) {
                 case 'k':
-                    // Ctrl+K to focus on video (example shortcut)
+                    // Ctrl+K to focus on terminal
                     event.preventDefault();
-                    const videoContainer = document.getElementById('videoContainer');
-                    if (videoContainer) {
-                        videoContainer.focus();
+                    const terminalContainer = document.getElementById('terminalContainer');
+                    if (terminalContainer) {
+                        terminalContainer.focus();
+                        terminalContainer.scrollIntoView({ behavior: 'smooth' });
                     }
+                    break;
+            }
+        }
+
+        // Terminal-specific shortcuts (when terminal is focused)
+        const terminalContainer = document.getElementById('terminalContainer');
+        if (document.activeElement === terminalContainer) {
+            switch (event.key) {
+                case 'Escape':
+                    event.preventDefault();
+                    terminalContainer.blur();
                     break;
             }
         }
     }
 
-    onVideoStatusChange(detail) {
-        console.log(`📹 Video status changed to: ${detail.status}`);
+    onTerminalStatusChange(detail) {
+        console.log(`🖥️ Terminal status changed to: ${detail.status}`);
         
         // Could add analytics tracking here
         // Could add additional UI feedback here
@@ -281,12 +288,50 @@ class DanNicCosApp {
     }
 
     // Public API
-    getVideoController() {
-        return this.videoController;
+    getTerminalController() {
+        return this.terminalController;
     }
 
     isReady() {
         return this.isInitialized;
+    }
+
+    // Terminal control methods for external use
+    nextCodeExample() {
+        if (this.terminalController) {
+            this.terminalController.nextSnippet();
+        }
+    }
+
+    previousCodeExample() {
+        if (this.terminalController) {
+            this.terminalController.previousSnippet();
+        }
+    }
+
+    toggleTerminalSound() {
+        if (this.terminalController) {
+            this.terminalController.toggleSound();
+        }
+    }
+
+    pauseTerminal() {
+        if (this.terminalController) {
+            this.terminalController.pauseDemo();
+        }
+    }
+
+    resumeTerminal() {
+        if (this.terminalController) {
+            this.terminalController.resumeDemo();
+        }
+    }
+
+    getTerminalState() {
+        if (this.terminalController) {
+            return this.terminalController.getState();
+        }
+        return null;
     }
 }
 

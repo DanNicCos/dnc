@@ -1,0 +1,256 @@
+/* Syntax Highlighting Themes for Terminal */
+
+/* Custom Cyberpunk Theme for Prism.js */
+.terminal-output code[class*="language-"],
+.terminal-output pre[class*="language-"] {
+    color: var(--color-text-primary);
+    background: transparent;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    tab-size: 4;
+    hyphens: none;
+}
+
+/* Selection */
+.terminal-output code[class*="language-"]::-moz-selection,
+.terminal-output pre[class*="language-"]::-moz-selection,
+.terminal-output code[class*="language-"] ::-moz-selection,
+.terminal-output pre[class*="language-"] ::-moz-selection {
+    background: rgba(0, 245, 255, 0.2);
+}
+
+.terminal-output code[class*="language-"]::selection,
+.terminal-output pre[class*="language-"]::selection,
+.terminal-output code[class*="language-"] ::selection,
+.terminal-output pre[class*="language-"] ::selection {
+    background: rgba(0, 245, 255, 0.2);
+}
+
+/* Syntax Element Styles */
+
+/* Comments */
+.terminal-output .token.comment,
+.terminal-output .token.prolog,
+.terminal-output .token.doctype,
+.terminal-output .token.cdata {
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+}
+
+/* Punctuation */
+.terminal-output .token.punctuation {
+    color: var(--color-text-secondary);
+}
+
+/* Properties, Tags, and Symbols */
+.terminal-output .token.property,
+.terminal-output .token.tag,
+.terminal-output .token.symbol,
+.terminal-output .token.deleted {
+    color: var(--color-secondary);
+    text-shadow: 0 0 4px rgba(255, 0, 255, 0.3);
+}
+
+/* Boolean, Number, and Constants */
+.terminal-output .token.boolean,
+.terminal-output .token.number,
+.terminal-output .token.constant {
+    color: var(--color-accent);
+    font-weight: var(--font-weight-medium);
+    text-shadow: 0 0 4px rgba(255, 255, 0, 0.3);
+}
+
+/* Selectors and Attributes */
+.terminal-output .token.selector,
+.terminal-output .token.attr-name,
+.terminal-output .token.char,
+.terminal-output .token.builtin,
+.terminal-output .token.inserted {
+    color: var(--color-tertiary);
+    text-shadow: 0 0 4px rgba(120, 219, 255, 0.3);
+}
+
+/* Strings */
+.terminal-output .token.string,
+.terminal-output .token.attr-value {
+    color: #90EE90;
+    text-shadow: 0 0 4px rgba(144, 238, 144, 0.3);
+}
+
+/* Operators and Keywords */
+.terminal-output .token.operator,
+.terminal-output .token.entity,
+.terminal-output .token.url,
+.terminal-output .language-css .token.string,
+.terminal-output .style .token.string {
+    color: var(--color-primary);
+    background: transparent;
+    text-shadow: 0 0 4px rgba(0, 245, 255, 0.3);
+}
+
+/* Keywords */
+.terminal-output .token.keyword {
+    color: var(--color-secondary);
+    font-weight: var(--font-weight-medium);
+    text-shadow: 0 0 4px rgba(255, 0, 255, 0.4);
+}
+
+/* Functions */
+.terminal-output .token.function {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-medium);
+    text-shadow: 0 0 4px rgba(0, 245, 255, 0.4);
+}
+
+/* Classes */
+.terminal-output .token.class-name {
+    color: var(--color-tertiary);
+    font-weight: var(--font-weight-medium);
+    text-shadow: 0 0 4px rgba(120, 219, 255, 0.4);
+}
+
+/* Variables */
+.terminal-output .token.variable {
+    color: var(--color-text-primary);
+}
+
+/* Regex */
+.terminal-output .token.regex,
+.terminal-output .token.important {
+    color: #FFA500;
+    text-shadow: 0 0 4px rgba(255, 165, 0, 0.3);
+}
+
+/* Important and Bold */
+.terminal-output .token.important,
+.terminal-output .token.bold {
+    font-weight: var(--font-weight-bold);
+}
+
+/* Italic */
+.terminal-output .token.italic {
+    font-style: italic;
+}
+
+/* Entity */
+.terminal-output .token.entity {
+    cursor: help;
+}
+
+/* Language-Specific Overrides */
+
+/* JavaScript */
+.terminal-output .language-javascript .token.keyword {
+    color: var(--color-secondary);
+}
+
+.terminal-output .language-javascript .token.function {
+    color: var(--color-primary);
+}
+
+.terminal-output .language-javascript .token.class-name {
+    color: var(--color-tertiary);
+}
+
+/* Python */
+.terminal-output .language-python .token.keyword {
+    color: var(--color-secondary);
+}
+
+.terminal-output .language-python .token.function {
+    color: var(--color-primary);
+}
+
+.terminal-output .language-python .token.decorator {
+    color: var(--color-accent);
+}
+
+/* CSS */
+.terminal-output .language-css .token.selector {
+    color: var(--color-tertiary);
+}
+
+.terminal-output .language-css .token.property {
+    color: var(--color-primary);
+}
+
+/* HTML */
+.terminal-output .language-html .token.tag {
+    color: var(--color-secondary);
+}
+
+.terminal-output .language-html .token.attr-name {
+    color: var(--color-tertiary);
+}
+
+.terminal-output .language-html .token.attr-value {
+    color: #90EE90;
+}
+
+/* JSON */
+.terminal-output .language-json .token.property {
+    color: var(--color-primary);
+}
+
+.terminal-output .language-json .token.string {
+    color: #90EE90;
+}
+
+/* Markdown */
+.terminal-output .language-markdown .token.title {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+}
+
+.terminal-output .language-markdown .token.code {
+    color: var(--color-tertiary);
+    background: rgba(0, 245, 255, 0.1);
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+/* Special Effects for Keywords */
+.terminal-output .token.keyword.animate {
+    animation: keyword-glow 2s ease-in-out infinite;
+}
+
+@keyframes keyword-glow {
+    0%, 100% {
+        text-shadow: 0 0 4px rgba(255, 0, 255, 0.4);
+    }
+    50% {
+        text-shadow: 0 0 8px rgba(255, 0, 255, 0.8), 0 0 12px rgba(255, 0, 255, 0.4);
+    }
+}
+
+/* Line Numbers (if enabled) */
+.terminal-output .line-numbers .line-numbers-rows {
+    border-right: 1px solid rgba(0, 245, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.terminal-output .line-numbers-rows > span:before {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+}
+
+/* Error highlighting */
+.terminal-output .token.error {
+    color: #ff5555;
+    background: rgba(255, 85, 85, 0.1);
+    text-shadow: 0 0 4px rgba(255, 85, 85, 0.5);
+}
+
+/* Warning highlighting */
+.terminal-output .token.warning {
+    color: #ffb86c;
+    background: rgba(255, 184, 108, 0.1);
+    text-shadow: 0 0 4px rgba(255, 184, 108, 0.5);
+}

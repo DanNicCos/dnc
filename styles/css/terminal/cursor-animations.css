@@ -1,0 +1,235 @@
+/* Terminal Cursor Animations */
+
+/* Base Cursor Animation */
+@keyframes cursor-blink {
+    0%, 50% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    51%, 100% {
+        opacity: 0;
+        transform: scaleY(0.1);
+    }
+}
+
+@keyframes cursor-pulse {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 8px rgba(0, 245, 255, 0.6);
+        transform: scaleX(1);
+    }
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 0 16px rgba(0, 245, 255, 0.9);
+        transform: scaleX(1.2);
+    }
+}
+
+@keyframes cursor-glow {
+    0%, 100% {
+        box-shadow: 
+            0 0 4px rgba(0, 245, 255, 0.4),
+            0 0 8px rgba(0, 245, 255, 0.2);
+    }
+    50% {
+        box-shadow: 
+            0 0 8px rgba(0, 245, 255, 0.8),
+            0 0 16px rgba(0, 245, 255, 0.4),
+            0 0 24px rgba(0, 245, 255, 0.2);
+    }
+}
+
+@keyframes cursor-typing {
+    0%, 100% {
+        opacity: 1;
+        transform: scaleY(1) scaleX(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scaleY(1.1) scaleX(0.9);
+    }
+}
+
+@keyframes cursor-idle {
+    0%, 100% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    50% {
+        opacity: 0.3;
+        transform: scaleY(0.95);
+    }
+}
+
+/* Cursor States */
+.terminal-cursor {
+    animation: cursor-blink 1.2s infinite ease-in-out;
+    transition: var(--transition-fast);
+}
+
+/* Typing State */
+.terminal-container.typing .terminal-cursor {
+    animation: cursor-typing 0.1s infinite ease-in-out;
+    background: var(--color-secondary);
+    box-shadow: 0 0 12px rgba(255, 0, 255, 0.8);
+}
+
+/* Paused State */
+.terminal-container.paused .terminal-cursor {
+    animation: cursor-pulse 1.5s infinite ease-in-out;
+    background: var(--color-accent);
+    box-shadow: 0 0 12px rgba(255, 255, 0, 0.8);
+}
+
+/* Idle State */
+.terminal-container.idle .terminal-cursor {
+    animation: cursor-idle 2s infinite ease-in-out;
+    background: var(--color-text-muted);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+/* Active/Focus State */
+.terminal-container:hover .terminal-cursor,
+.terminal-container.focused .terminal-cursor {
+    animation: cursor-glow 1s infinite ease-in-out;
+    background: var(--color-primary);
+}
+
+/* Error State */
+.terminal-container.error .terminal-cursor {
+    animation: cursor-blink 0.3s infinite ease-in-out;
+    background: #ff5555;
+    box-shadow: 0 0 12px rgba(255, 85, 85, 0.8);
+}
+
+/* Completed State */
+.terminal-container.completed .terminal-cursor {
+    animation: cursor-pulse 2s infinite ease-in-out;
+    background: var(--color-primary);
+    box-shadow: 0 0 16px rgba(0, 245, 255, 1);
+}
+
+/* Different Cursor Styles */
+.terminal-cursor.block {
+    width: 8px;
+    height: 1.2em;
+    background: var(--color-primary);
+}
+
+.terminal-cursor.underline {
+    width: 8px;
+    height: 2px;
+    background: var(--color-primary);
+    margin-top: 1em;
+}
+
+.terminal-cursor.beam {
+    width: 2px;
+    height: 1.2em;
+    background: var(--color-primary);
+}
+
+/* Responsive Cursor Adjustments */
+@media (max-width: 768px) {
+    .terminal-cursor {
+        width: 6px;
+        font-size: calc(var(--font-size-sm) * 0.9);
+    }
+    
+    .terminal-cursor.block {
+        width: 6px;
+    }
+    
+    .terminal-cursor.underline {
+        width: 6px;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .terminal-cursor {
+        background: #ffffff;
+        box-shadow: none;
+    }
+    
+    .terminal-container.typing .terminal-cursor {
+        background: #ffffff;
+        box-shadow: 0 0 4px #ffffff;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .terminal-cursor {
+        animation: none;
+        opacity: 1;
+    }
+    
+    .terminal-container.typing .terminal-cursor,
+    .terminal-container.paused .terminal-cursor,
+    .terminal-container.idle .terminal-cursor,
+    .terminal-container:hover .terminal-cursor,
+    .terminal-container.focused .terminal-cursor,
+    .terminal-container.error .terminal-cursor,
+    .terminal-container.completed .terminal-cursor {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+/* Text selection effects */
+.terminal-output::selection {
+    background: rgba(0, 245, 255, 0.2);
+    color: inherit;
+}
+
+.terminal-output code::selection {
+    background: rgba(0, 245, 255, 0.2);
+    color: inherit;
+}
+
+/* Smooth transitions for cursor changes */
+.terminal-cursor {
+    transition: 
+        background-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        width var(--transition-fast),
+        height var(--transition-fast);
+}
+
+/* Special effects */
+@keyframes cursor-spark {
+    0% {
+        box-shadow: 
+            0 0 4px rgba(0, 245, 255, 0.4),
+            0 0 8px rgba(0, 245, 255, 0.2);
+    }
+    25% {
+        box-shadow: 
+            0 0 8px rgba(255, 0, 255, 0.6),
+            0 0 16px rgba(255, 0, 255, 0.3),
+            2px 2px 0 rgba(255, 255, 0, 0.8);
+    }
+    50% {
+        box-shadow: 
+            0 0 12px rgba(0, 245, 255, 0.8),
+            0 0 24px rgba(0, 245, 255, 0.4),
+            -2px -2px 0 rgba(255, 0, 255, 0.8);
+    }
+    75% {
+        box-shadow: 
+            0 0 8px rgba(255, 255, 0, 0.6),
+            0 0 16px rgba(255, 255, 0, 0.3),
+            2px -2px 0 rgba(0, 245, 255, 0.8);
+    }
+    100% {
+        box-shadow: 
+            0 0 4px rgba(0, 245, 255, 0.4),
+            0 0 8px rgba(0, 245, 255, 0.2);
+    }
+}
+
+/* Special spark effect for interactive moments */
+.terminal-container.sparking .terminal-cursor {
+    animation: cursor-spark 0.8s ease-in-out;
+}
