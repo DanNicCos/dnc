@@ -6,7 +6,7 @@
 @media screen and (max-width: 768px) {
     /* Header Mobile Adjustments - positioning only */
     .header {
-        padding: 12px 20px;
+        padding: 0 var(--space-md);
     }
 
     .header__content {
@@ -15,21 +15,31 @@
         align-items: center;
         gap: 20px;
         padding: var(--space-md) 0;
+        width: 100%;
     }
 
     .header__left {
         gap: 12px;
     }
 
-    /* Social Bar Mobile - center alignment to match content */
+    /* Social Bar Mobile - align with header content */
     .social-bar {
         padding: 0 var(--space-md);
-        justify-content: flex-start; /* Align left to match content panel */
+        justify-content: flex-start;
+        width: calc(100% - 2 * var(--space-md));
+        left: var(--space-md);
+        transform: none;
     }
 
-    /* Content Panel Mobile - positioning only */
+    /* Main Content Mobile - align with header and social bar */
+    .main-content {
+        padding: 0 var(--space-md);
+    }
+
+    /* Content Panel Mobile - remove extra margin since main-content has padding */
     .content-panel {
-        margin: var(--space-md);
+        margin: 0;
+        width: 100%;
     }
 }
 
