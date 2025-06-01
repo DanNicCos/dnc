@@ -24,7 +24,7 @@
 
     /* Social Bar Mobile - align with header content */
     .social-bar {
-        padding: 0 var(--space-md);
+        /* padding: 0 var(--space-md); */
         justify-content: flex-start;
         width: calc(100% - 2 * var(--space-md));
         left: var(--space-md);
@@ -59,7 +59,7 @@
     }
 
     .social-bar {
-        padding: 0 var(--space-sm);
+        /* padding: 0 var(--space-sm); */
         justify-content: flex-start;
         width: calc(100% - 2 * var(--space-sm));
         left: var(--space-sm);
