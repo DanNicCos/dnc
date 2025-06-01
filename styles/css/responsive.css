@@ -36,11 +36,12 @@
 /* Small Mobile Styles (Up to 480px) */
 @media screen and (max-width: 480px) {
     .header {
-        padding: 8px 16px;
+        padding: 0 var(--space-sm);
     }
 
     .header__content {
         gap: 15px;
+        width: 100%;
     }
 
     .header__left {
@@ -49,15 +50,23 @@
 
     .social-bar {
         padding: 0 var(--space-sm);
-        justify-content: flex-start; /* Keep left alignment */
+        justify-content: flex-start;
+        width: calc(100% - 2 * var(--space-sm));
+        left: var(--space-sm);
+        transform: none;
     }
 
     .social-links {
         gap: 10px;
     }
 
+    .main-content {
+        padding: 0 var(--space-sm);
+    }
+
     .content-panel {
-        margin: var(--space-sm);
+        margin: 0;
+        width: 100%;
     }
 }
 
