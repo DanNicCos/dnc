@@ -90,7 +90,8 @@ body::before {
 .main-content {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex: 1;
 }

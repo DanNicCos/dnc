@@ -143,7 +143,7 @@
     background: var(--gradient-background);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-lg);
-    padding: var(--space-lg);
+    padding: var(--space-);
     position: relative;
     overflow: hidden;
     box-shadow: 
@@ -385,4 +385,339 @@
 .video-status.paused {
     border-color: var(--color-text-muted);
     color: var(--color-secondary);
+}
+
+/* Updated Content Panel Styles - Add these to your components.css */
+/* Updated Content Panel Styles - Add these to your components.css */
+
+/* Content Summary Section */
+.content-summary {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.main-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: var(--font-weight-bold);
+    background: var(--gradient-primary);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 8s ease infinite;
+    text-shadow: var(--shadow-glow);
+    letter-spacing: 1px;
+    margin: 0 0 var(--space-md) 0;
+    line-height: 1.2;
+}
+
+.subtitle-signature-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.main-subtitle {
+    color: var(--color-text-secondary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-light);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Updated Signature to work inline */
+.signature {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-display);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    flex-shrink: 0;
+}
+
+.signature__icon {
+    width: 1.2em;
+    height: 1.2em;
+    fill: var(--color-text-primary);
+    animation: pulse-glow 5s infinite;
+}
+
+.signature__name {
+    color: var(--color-text-muted);
+}
+
+/* Show More Button */
+.show-more-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-sm) var(--space-lg);
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto var(--space-lg) auto;
+    backdrop-filter: blur(10px);
+}
+
+.show-more-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+    transition: var(--transition-normal);
+}
+
+.show-more-btn:hover::before {
+    left: 100%;
+}
+
+.show-more-btn:hover {
+    border-color: var(--color-border-hover);
+    background: rgba(0, 245, 255, 0.05);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.show-more-btn:hover .btn-text {
+    color: var(--color-primary);
+}
+
+.show-more-btn:hover .prompt-symbol {
+    color: var(--color-secondary);
+}
+
+.btn-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transition-normal);
+}
+
+.prompt-symbol {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+    transition: var(--transition-normal);
+}
+
+.btn-label {
+    transition: var(--transition-normal);
+}
+
+.btn-icon {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    transition: var(--transition-normal);
+    transform-origin: center;
+}
+
+/* Button states */
+.show-more-btn[aria-expanded="true"] .btn-icon {
+    transform: rotate(180deg);
+}
+
+.show-more-btn[aria-expanded="true"] .btn-label::after {
+    content: ' --collapse';
+}
+
+/* Expanded Content */
+.expanded-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-10px);
+    width: 100%;
+}
+
+.expanded-content.show {
+    max-height: 500px; /* Adjust based on content */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Styled Container for Expanded Content */
+/* .expanded-content .about-text {
+    position: relative;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-lg);
+    margin-top: var(--space-lg);
+    overflow: hidden;
+    box-shadow: 
+        var(--shadow-lg),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    
+
+    color: var(--color-text-secondary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    font-weight: var(--font-weight-light);
+    text-align: start;
+} 
+*/
+
+.expanded-content .about-text {
+    color: var(--color-text-secondary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    font-weight: var(--font-weight-light);
+    text-align: start;
+    margin-top: var(--space-lg);
+    padding: var(--space-lg);
+}
+
+/* Animated border effect matching terminal */
+.expanded-content .about-text::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--color-border);
+    border-radius: calc(var(--border-radius-lg) + 2px);
+    z-index: var(--z-background);
+}
+
+/* Scan line effect matching terminal */
+.expanded-content .about-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(0, 245, 255, 0.03) 50%, transparent 60%);
+    animation: scan-line 4s linear infinite;
+    pointer-events: none;
+    border-radius: var(--border-radius-lg);
+}
+
+.expanded-content .about-text a {
+    color: transparent;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-tertiary), var(--color-primary));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: var(--font-weight-medium);
+    position: relative;
+    transition: var(--transition-normal);
+    animation: gradient-flow 4s ease-in-out infinite;
+}
+
+.expanded-content .about-text a:hover {
+    background-size: 200% 200%;
+    animation: gradient-shift-fast 2s ease-in-out infinite;
+    text-shadow: var(--shadow-glow);
+}
+
+.expanded-content .about-text a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gradient-primary);
+    transition: var(--transition-normal);
+}
+
+.expanded-content .about-text a:hover::after {
+    width: 100%;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .subtitle-signature-row {
+        flex-direction: column;
+        gap: var(--space-sm);
+        text-align: center;
+    }
+    
+    .main-subtitle {
+        font-size: var(--font-size-base);
+    }
+    
+    .signature {
+        font-size: var(--font-size-base);
+    }
+    
+    .show-more-btn {
+        padding: var(--space-sm) var(--space-md);
+        font-size: calc(var(--font-size-sm) * 0.9);
+    }
+    
+    /* Mobile container adjustments */
+    .expanded-content .about-text {
+        padding: var(--space-md);
+        margin-top: var(--space-md);
+        font-size: var(--font-size-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.75rem;
+    }
+    
+    .main-subtitle {
+        font-size: var(--font-size-sm);
+    }
+    
+    .signature {
+        font-size: var(--font-size-sm);
+    }
+    
+    .signature__icon {
+        width: 1em;
+        height: 1em;
+    }
+    
+    .show-more-btn {
+        padding: 10px var(--space-md);
+        font-size: calc(var(--font-size-sm) * 0.85);
+    }
+    
+    .expanded-content {
+        max-height: 600px; /* More space needed on mobile */
+    }
+    
+    /* Small mobile container adjustments */
+    .expanded-content .about-text {
+        padding: var(--space-sm);
+        margin-top: var(--space-sm);
+        font-size: calc(var(--font-size-sm) * 0.9);
+        line-height: 1.5;
+    }
 }

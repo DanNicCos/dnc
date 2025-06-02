@@ -64,53 +64,79 @@
         </nav>
     </div>
 
-    <!-- Main Content -->
+    <!-- Main Content Container -->
     <main class="main-content">
-        <article class="content-panel">
-            <!-- Interactive Terminal Section -->
-            <section class="terminal-showcase">
-                <div class="terminal-container" id="terminalContainer">
-                    <!-- Terminal Header -->
-                    <div class="terminal-header">
-                        <div class="terminal-controls">
-                            <span class="terminal-button close"></span>
-                            <span class="terminal-button minimize"></span>
-                            <span class="terminal-button maximize"></span>
-                        </div>
-                        <div class="terminal-title">
-                            <span id="terminalTitle">~/projects/ai-experiments</span>
-                        </div>
-                        <div class="terminal-actions">
-                            <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                                </svg>
-                            </button>
-                        </div>
+        <!-- Interactive Terminal Section -->
+        <section class="terminal-showcase">
+            <div class="terminal-container" id="terminalContainer">
+                <!-- Terminal Header -->
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    
-                    <!-- Terminal Content -->
-                    <div class="terminal-content">
-                        <div class="terminal-prompt">
-                            <span class="prompt-user">danniccos</span>
-                            <span class="prompt-separator">@</span>
-                            <span class="prompt-host">macbook</span>
-                            <span class="prompt-path">~/projects</span>
-                            <span class="prompt-symbol">$</span>
-                        </div>
-                        <div class="terminal-output">
-                            <pre><code id="codeOutput" class="language-javascript"></code></pre>
-                            <span class="terminal-cursor" id="terminalCursor">|</span>
-                        </div>
-                        <div class="terminal-status">
-                            <span class="status-text">Click anywhere to see next project</span>
-                            <span class="status-indicator" id="statusIndicator">●</span>
-                        </div>
+                    <div class="terminal-title">
+                        <span id="terminalTitle">~/projects/ai-experiments</span>
+                    </div>
+                    <div class="terminal-actions">
+                        <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
-            </section>
-            
-            <div class="panel-content">
+                
+                <!-- Terminal Content -->
+                <div class="terminal-content">
+                    <div class="terminal-prompt">
+                        <span class="prompt-user">danniccos</span>
+                        <span class="prompt-separator">@</span>
+                        <span class="prompt-host">macbook</span>
+                        <span class="prompt-path">~/projects</span>
+                        <span class="prompt-symbol">$</span>
+                    </div>
+                    <div class="terminal-output">
+                        <pre><code id="codeOutput" class="language-javascript"></code></pre>
+                        <span class="terminal-cursor" id="terminalCursor">|</span>
+                    </div>
+                    <div class="terminal-status">
+                        <span class="status-text">Click anywhere to see next project</span>
+                        <span class="status-indicator" id="statusIndicator">●</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Panel with Gradient Transition -->
+        <!-- Replace the existing panel-content div in your index.html with this: -->
+        <div class="panel-content">
+            <!-- Main Content Summary -->
+            <div class="content-summary">
+                <h1 class="main-title">AI Engineer</h1>
+                <div class="subtitle-signature-row">
+                    <p class="main-subtitle">Building useful tools, documenting the journey</p>
+                    <div class="signature">
+                        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(45)" class="signature__icon">
+                            <path d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"/>
+                        </svg> 
+                        <span class="signature__name">Nic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Show More Button -->
+            <button class="show-more-btn" id="showMoreBtn" aria-expanded="false" aria-controls="expandedContent">
+                <span class="btn-text">
+                    <span class="prompt-symbol">&gt;</span>
+                    <span class="btn-label">show --details</span>
+                </span>
+                <span class="btn-icon" aria-hidden="true">▼</span>
+            </button>
+
+            <!-- Expanded Content (Hidden by default) -->
+            <div class="expanded-content" id="expandedContent" aria-hidden="true">
                 <div class="about-text">
                     I spend my days trying to figure out AI and how to partner with it to build useful stuff. 
                     Turns out computers are great at thinking but terrible at explaining themselves—which makes two of us.
@@ -119,17 +145,8 @@
                     Currently engineering intelligence while wondering how to live a full life. 
                     The jury's still out on both.
                 </div>
-                
-                <div class="signature">
-                    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(45)" class="signature__icon">
-                        <path d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"/>
-                    </svg> 
-                    <span class="signature__name">Nic</span>
-                </div>
             </div>
-
-            
-        </article>
+        </div>
     </main>
 
     <!-- Scripts -->
@@ -137,6 +154,7 @@
     <script src="scripts/js/terminal/code-snippets.js"></script>
     <script src="scripts/js/terminal/typing-engine.js"></script>
     <script src="scripts/js/terminal/terminal-controller.js"></script>
+    <script src="scripts/js/content-panel.js"></script>
     <script src="scripts/js/main.js"></script>
 </body>
 </html>

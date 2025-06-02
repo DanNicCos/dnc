@@ -1,6 +1,4 @@
-/* Responsive Design Styles - EXACTLY THE SAME ON ALL SCREENS */
-
-/* Only adjust positioning and padding for mobile, NO size changes */
+/* Responsive Design Styles - Updated with Terminal Mobile Fix */
 
 /* Mobile Styles (Up to 768px) */
 @media screen and (max-width: 768px) {
@@ -24,7 +22,6 @@
 
     /* Social Bar Mobile - align with header content */
     .social-bar {
-        /* padding: 0 var(--space-md); */
         justify-content: flex-start;
         width: calc(100% - 2 * var(--space-md));
         left: var(--space-md);
@@ -41,9 +38,27 @@
         margin: 0;
         width: 100%;
     }
+
+    /* NEW: Terminal Mobile Alignment - match header and social bar */
+    .terminal-showcase {
+        width: 100%; /* Full width of the main-content container */
+    }
+
+    .terminal-container {
+        width: 100%; /* Inherits width from terminal-showcase */
+    }
+
+    /* Terminal title adjustments for mobile */
+    .terminal-title {
+        font-size: calc(var(--font-size-sm) * 0.9);
+        max-width: 60%; /* Prevent overflow */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 }
 
-/* Small Mobile Styles (Up to 480px) */
+/* Small Mobile Styles (Up to 480px) - ENHANCED FOR TERMINAL */
 @media screen and (max-width: 480px) {
     .header {
         padding: 0 var(--space-sm);
@@ -59,7 +74,6 @@
     }
 
     .social-bar {
-        /* padding: 0 var(--space-sm); */
         justify-content: flex-start;
         width: calc(100% - 2 * var(--space-sm));
         left: var(--space-sm);
@@ -71,12 +85,101 @@
     }
 
     .main-content {
-        padding: 0 var(--space-sm);
+        padding: 0 var(--space-sm); /* Matches header and social-bar padding */
     }
 
     .content-panel {
         margin: 0;
         width: 100%;
+    }
+
+    /* NEW: Terminal alignment for very small screens */
+    .terminal-showcase {
+        width: 100%; /* Matches main-content width */
+    }
+
+    .terminal-container {
+        width: 100%;
+    }
+
+    /* Enhanced terminal title for narrow screens */
+    .terminal-title {
+        font-size: calc(var(--font-size-sm) * 0.8);
+        max-width: 50%; /* More restrictive on small screens */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Terminal header spacing optimization */
+    .terminal-header {
+        padding: var(--space-xs) var(--space-sm);
+    }
+
+    /* Terminal controls smaller on mobile */
+    .terminal-button {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* Sound toggle smaller */
+    .sound-toggle {
+        width: 20px;
+        height: 20px;
+    }
+
+    .sound-toggle svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* Extra Small Mobile (Up to 320px) - CRITICAL FIXES */
+@media screen and (max-width: 320px) {
+    .header {
+        padding: 0 10px; /* Even tighter padding */
+    }
+
+    .social-bar {
+        width: calc(100% - 20px); /* Match header padding */
+        left: 10px;
+    }
+
+    .main-content {
+        padding: 0 10px; /* Match header and social-bar */
+    }
+
+    /* Terminal critical fixes for 320px */
+    .terminal-title {
+        font-size: calc(var(--font-size-sm) * 0.75);
+        max-width: 45%; /* Very restrictive to prevent overflow */
+    }
+
+    /* Further optimize terminal header space */
+    .terminal-header {
+        padding: var(--space-xs) 8px;
+    }
+
+    /* Smaller terminal controls */
+    .terminal-button {
+        width: 8px;
+        height: 8px;
+    }
+
+    /* Adjust terminal controls gap */
+    .terminal-controls {
+        gap: 6px;
+    }
+
+    /* Make sound toggle even smaller */
+    .sound-toggle {
+        width: 18px;
+        height: 18px;
+    }
+
+    .sound-toggle svg {
+        width: 12px;
+        height: 12px;
     }
 }
 
@@ -100,18 +203,14 @@
     }
 
     /* Remove hover effects that don't work on touch */
-    .video-container:hover .video-overlay {
+    .terminal-container:hover .terminal-overlay {
         opacity: 0;
-    }
-
-    .video-container:hover video {
-        filter: none;
     }
 
     /* Add tap highlight color */
     .home-icon,
     .social-link,
-    .video-container {
+    .terminal-container {
         -webkit-tap-highlight-color: rgba(0, 245, 255, 0.2);
     }
 }
@@ -130,7 +229,7 @@
 
     .header,
     .social-bar,
-    .video-showcase {
+    .terminal-showcase {
         display: none !important;
     }
 

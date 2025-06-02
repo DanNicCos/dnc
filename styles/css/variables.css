@@ -97,6 +97,6 @@
 
 @media screen and (max-width: 767px) {
     :root {
-        --content-width: 85%; /* Mobile - maximum readability */
+        --content-width: 95%; /* Mobile - maximum readability */
     }
 }

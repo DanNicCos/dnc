@@ -1,5 +1,5 @@
 /**
- * Terminal Controller - Main orchestrator for interactive terminal
+ * Terminal Controller - Updated with better timing and title synchronization
  * Manages code snippets, typing animation, user interaction, and state
  */
 
@@ -9,8 +9,9 @@ class TerminalController {
         this.options = {
             autoStart: true,
             autoRotate: true,
-            rotateInterval: 8000,
+            rotateInterval: 30000, // INCREASED: 30 seconds (was 8000)
             typingSpeed: 60,
+            waitAfterComplete: 5000, // NEW: Wait 5 seconds after typing completes
             ...options
         };
         
@@ -20,6 +21,7 @@ class TerminalController {
         this.isPaused = false;
         this.isUserInteracting = false;
         this.autoRotateTimer = null;
+        this.typingCompleteTimer = null; // NEW: Timer for post-typing delay
         
         // Get code snippets
         this.snippets = window.codeSnippets || [];
@@ -155,17 +157,8 @@ class TerminalController {
             this.soundManager.playStartup();
         }
 
-        // Set initial state
-        this.setState('typing');
-        this.updateTerminalTitle();
-        
         // Start typing current snippet
         await this.typeCurrentSnippet();
-        
-        // Set up auto-rotation if enabled
-        if (this.options.autoRotate) {
-            this.startAutoRotation();
-        }
     }
 
     async typeCurrentSnippet() {
@@ -174,13 +167,14 @@ class TerminalController {
 
         try {
             this.isTyping = true;
+            this.setState('typing');
+            
+            // IMPORTANT: Update title BEFORE typing starts
+            this.updateTerminalTitle(snippet.title);
             this.updateUI();
             
             // Clear previous content
             this.elements.output.textContent = '';
-            
-            // Update title
-            this.updateTerminalTitle(snippet.title);
             
             // Type the code
             await this.typingEngine.typeText(snippet.code, snippet.language);
@@ -198,24 +192,49 @@ class TerminalController {
         this.updateUI();
         
         console.log(`✅ Completed typing snippet: ${this.snippets[this.currentSnippetIndex]?.id}`);
+        
+        // NEW: Start delayed auto-rotation after typing completes
+        this.scheduleNextRotation();
+    }
+
+    // NEW: Schedule next rotation with proper timing
+    scheduleNextRotation() {
+        // Clear any existing timers
+        this.clearRotationTimers();
+        
+        // Only schedule if auto-rotate is enabled and user isn't interacting
+        if (this.options.autoRotate && !this.isUserInteracting && !this.isPaused) {
+            this.typingCompleteTimer = setTimeout(() => {
+                this.nextSnippet();
+            }, this.options.waitAfterComplete);
+        }
+    }
+
+    // NEW: Clear all rotation timers
+    clearRotationTimers() {
+        if (this.autoRotateTimer) {
+            clearInterval(this.autoRotateTimer);
+            this.autoRotateTimer = null;
+        }
+        if (this.typingCompleteTimer) {
+            clearTimeout(this.typingCompleteTimer);
+            this.typingCompleteTimer = null;
+        }
     }
 
     // User interaction
     handleUserInteraction() {
         this.isUserInteracting = true;
         
-        // Stop auto-rotation temporarily
-        this.stopAutoRotation();
+        // Clear all rotation timers
+        this.clearRotationTimers();
         
-        // Move to next snippet
+        // Move to next snippet immediately
         this.nextSnippet();
         
         // Resume auto-rotation after a delay
         setTimeout(() => {
             this.isUserInteracting = false;
-            if (this.options.autoRotate) {
-                this.startAutoRotation();
-            }
         }, 5000);
     }
 
@@ -248,11 +267,17 @@ class TerminalController {
 
     // Snippet navigation
     nextSnippet() {
+        // Clear timers when manually advancing
+        this.clearRotationTimers();
+        
         this.currentSnippetIndex = (this.currentSnippetIndex + 1) % this.snippets.length;
         this.typeCurrentSnippet();
     }
 
     previousSnippet() {
+        // Clear timers when manually going back
+        this.clearRotationTimers();
+        
         this.currentSnippetIndex = this.currentSnippetIndex === 0 
             ? this.snippets.length - 1 
             : this.currentSnippetIndex - 1;
@@ -260,27 +285,21 @@ class TerminalController {
     }
 
     restartCurrentSnippet() {
+        // Clear timers when restarting
+        this.clearRotationTimers();
         this.typeCurrentSnippet();
     }
 
-    // Auto-rotation
+    // Auto-rotation (UPDATED)
     startAutoRotation() {
-        if (this.autoRotateTimer) {
-            clearInterval(this.autoRotateTimer);
-        }
-        
-        this.autoRotateTimer = setInterval(() => {
-            if (!this.isUserInteracting && !this.isPaused) {
-                this.nextSnippet();
-            }
-        }, this.options.rotateInterval);
+        // Don't start interval-based rotation anymore
+        // Rotation is now handled by scheduleNextRotation() after typing completes
+        console.log('Auto-rotation enabled (timer-based after typing completion)');
     }
 
     stopAutoRotation() {
-        if (this.autoRotateTimer) {
-            clearInterval(this.autoRotateTimer);
-            this.autoRotateTimer = null;
-        }
+        this.clearRotationTimers();
+        console.log('Auto-rotation disabled');
     }
 
     // Playback control
@@ -295,7 +314,7 @@ class TerminalController {
     pauseDemo() {
         this.isPaused = true;
         this.typingEngine.pause();
-        this.stopAutoRotation();
+        this.clearRotationTimers(); // Clear timers when paused
         this.setState('paused');
         this.updateUI();
     }
@@ -303,9 +322,7 @@ class TerminalController {
     resumeDemo() {
         this.isPaused = false;
         this.typingEngine.resume();
-        if (this.options.autoRotate && !this.isUserInteracting) {
-            this.startAutoRotation();
-        }
+        // Auto-rotation will resume after current typing completes
         this.setState('typing');
         this.updateUI();
     }
@@ -359,11 +376,16 @@ class TerminalController {
         }
     }
 
+    // UPDATED: Better title synchronization
     updateTerminalTitle(customTitle) {
         if (this.elements.title) {
             const snippet = this.snippets[this.currentSnippetIndex];
             const title = customTitle || snippet?.title || '~/projects';
+            
+            // ENSURE title updates immediately
             this.elements.title.textContent = title;
+            
+            console.log(`📋 Title updated to: ${title}`);
         }
     }
 
@@ -396,6 +418,7 @@ class TerminalController {
 
     setSnippet(index) {
         if (index >= 0 && index < this.snippets.length) {
+            this.clearRotationTimers(); // Clear timers when manually setting
             this.currentSnippetIndex = index;
             this.typeCurrentSnippet();
         }
@@ -418,10 +441,8 @@ class TerminalController {
 
     setAutoRotate(enabled) {
         this.options.autoRotate = enabled;
-        if (enabled) {
-            this.startAutoRotation();
-        } else {
-            this.stopAutoRotation();
+        if (!enabled) {
+            this.clearRotationTimers();
         }
     }
 
@@ -429,7 +450,7 @@ class TerminalController {
     destroy() {
         console.log('🛑 Destroying terminal controller');
         
-        this.stopAutoRotation();
+        this.clearRotationTimers();
         
         if (this.typingEngine) {
             this.typingEngine.destroy();

@@ -1,6 +1,6 @@
 /**
- * Typing Engine for Terminal Animation
- * Handles realistic typing effects with variable speeds and errors
+ * Typing Engine for Terminal Animation - Updated with auto-scroll
+ * Handles realistic typing effects with variable speeds and auto-scrolling
  */
 
 class TypingEngine {
@@ -25,6 +25,9 @@ class TypingEngine {
         
         // Sound integration
         this.soundManager = window.soundManager;
+        
+        // NEW: Scroll container reference
+        this.scrollContainer = this.outputElement.closest('.terminal-output');
     }
 
     async typeText(text, language = 'javascript') {
@@ -36,12 +39,16 @@ class TypingEngine {
 
             this.isTyping = true;
             this.isPaused = false;
+            this.targetText = text; // Store for resume functionality
             this.onComplete = resolve;
             this.onError = reject;
             
             // Clear output
             this.outputElement.textContent = '';
             this.outputElement.className = `language-${language}`;
+            
+            // NEW: Ensure we start at the top
+            this.scrollToTop();
             
             // Start typing animation
             this._typeCharacters(text, 0);
@@ -93,6 +100,9 @@ class TypingEngine {
         // Type the character
         this.outputElement.textContent += char;
         
+        // NEW: Auto-scroll to keep cursor visible
+        this.scrollToKeepCursorVisible();
+        
         // Trigger syntax highlighting if available
         this._highlightSyntax();
         
@@ -115,6 +125,7 @@ class TypingEngine {
         // Type wrong character
         this.outputElement.textContent += wrongChar;
         this._playKeypressSound();
+        this.scrollToKeepCursorVisible(); // NEW: Scroll on error too
         this._highlightSyntax();
         
         // Wait, then backspace and type correct character
@@ -123,12 +134,14 @@ class TypingEngine {
             const currentText = this.outputElement.textContent;
             this.outputElement.textContent = currentText.slice(0, -1);
             this._playBackspaceSound();
+            this.scrollToKeepCursorVisible(); // NEW: Scroll after backspace
             this._highlightSyntax();
             
             // Type correct character after short delay
             this.currentTimeout = setTimeout(() => {
                 this.outputElement.textContent += char;
                 this._playKeypressSound();
+                this.scrollToKeepCursorVisible(); // NEW: Scroll after correction
                 this._highlightSyntax();
                 
                 // Continue with next character
@@ -137,6 +150,49 @@ class TypingEngine {
                 }, baseSpeed);
             }, 100);
         }, this.options.errorCorrectDelay);
+    }
+
+    // NEW: Auto-scroll functionality
+    scrollToKeepCursorVisible() {
+        if (!this.scrollContainer) return;
+        
+        // Get the cursor position (end of text)
+        const textHeight = this.outputElement.scrollHeight;
+        const containerHeight = this.scrollContainer.clientHeight;
+        const scrollTop = this.scrollContainer.scrollTop;
+        
+        // If content overflows, scroll to keep bottom visible
+        if (textHeight > containerHeight) {
+            const shouldScrollTo = textHeight - containerHeight + 20; // 20px padding
+            
+            // Only scroll if we need to (smooth auto-scroll)
+            if (shouldScrollTo > scrollTop) {
+                this.scrollContainer.scrollTo({
+                    top: shouldScrollTo,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    }
+
+    // NEW: Scroll to top when starting new content
+    scrollToTop() {
+        if (this.scrollContainer) {
+            this.scrollContainer.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    // NEW: Scroll to bottom when typing completes
+    scrollToBottom() {
+        if (this.scrollContainer) {
+            this.scrollContainer.scrollTo({
+                top: this.scrollContainer.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
     }
 
     _highlightSyntax() {
@@ -170,6 +226,9 @@ class TypingEngine {
 
     _completeTyping() {
         this.isTyping = false;
+        
+        // NEW: Ensure final scroll position is optimal
+        this.scrollToBottom();
         
         // Final syntax highlighting
         this._highlightSyntax();
@@ -219,6 +278,7 @@ class TypingEngine {
     clear() {
         this.stop();
         this.outputElement.textContent = '';
+        this.scrollToTop(); // NEW: Reset scroll position
     }
 
     // Speed control
@@ -274,6 +334,7 @@ class TypingEngine {
                 if (currentText.length > 0) {
                     this.outputElement.textContent = currentText.slice(0, -1);
                     this._playBackspaceSound();
+                    this.scrollToKeepCursorVisible(); // NEW: Scroll during backspace
                     this._highlightSyntax();
                 }
                 remaining--;
@@ -314,10 +375,50 @@ class TypingEngine {
             .replace(/\n\n\n+/g, '\n\n'); // Clean up excessive line breaks
     }
 
+    // NEW: Manual scroll controls for user interaction
+    scrollUp() {
+        if (this.scrollContainer) {
+            this.scrollContainer.scrollBy({
+                top: -50,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    scrollDown() {
+        if (this.scrollContainer) {
+            this.scrollContainer.scrollBy({
+                top: 50,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    // NEW: Check if content is scrollable
+    isScrollable() {
+        if (!this.scrollContainer) return false;
+        return this.scrollContainer.scrollHeight > this.scrollContainer.clientHeight;
+    }
+
+    // NEW: Get scroll position info
+    getScrollInfo() {
+        if (!this.scrollContainer) return null;
+        
+        return {
+            scrollTop: this.scrollContainer.scrollTop,
+            scrollHeight: this.scrollContainer.scrollHeight,
+            clientHeight: this.scrollContainer.clientHeight,
+            isAtTop: this.scrollContainer.scrollTop === 0,
+            isAtBottom: this.scrollContainer.scrollTop + this.scrollContainer.clientHeight >= this.scrollContainer.scrollHeight - 5,
+            isScrollable: this.isScrollable()
+        };
+    }
+
     // Cleanup
     destroy() {
         this.stop();
         this.outputElement = null;
+        this.scrollContainer = null;
         this.onComplete = null;
         this.onProgress = null;
         this.onError = null;

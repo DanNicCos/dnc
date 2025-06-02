@@ -1,12 +1,13 @@
-/* Terminal Component Styles */
+/* Terminal Component Styles - Updated with Height/Scrolling */
 
 /* Terminal Showcase Container */
 .terminal-showcase {
-    width: 100%;
+    /* width: 100%; */
+    width: var(--content-width);
     margin-bottom: var(--space-xl);
 }
 
-/* Main Terminal Container */
+/* Main Terminal Container - EXPANDED HEIGHT */
 .terminal-container {
     position: relative;
     width: 100%;
@@ -155,14 +156,16 @@
     opacity: 0.5;
 }
 
-/* Terminal Content */
+/* Terminal Content - REDUCED HEIGHT */
 .terminal-content {
     padding: var(--space-md);
     background: rgba(0, 0, 0, 0.8);
-    min-height: 300px;
+    min-height: 350px; /* REDUCED from 450px to 350px */
+    max-height: 350px; /* REDUCED from 450px to 350px */
     position: relative;
     z-index: var(--z-content);
     font-family: var(--font-mono);
+    overflow: hidden; /* Container doesn't scroll, only output does */
 }
 
 /* Terminal Prompt */
@@ -198,10 +201,69 @@
     margin-left: var(--space-xs);
 }
 
-/* Terminal Output */
+/* Terminal Output - REDUCED SCROLLABLE AREA */
 .terminal-output {
     position: relative;
-    min-height: 200px;
+    min-height: 220px; /* REDUCED from 320px to 220px */
+    max-height: 220px; /* REDUCED from 320px to 220px */
+    overflow-y: auto; /* ENABLE vertical scrolling */
+    overflow-x: hidden; /* Hide horizontal scroll */
+    padding-right: 8px; /* Space for scrollbar */
+    scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* Subtle gradient fade at bottom when content overflows (non-intrusive) */
+.terminal-output.has-overflow:not(.at-bottom)::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 8px; /* Account for scrollbar */
+    height: 20px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    pointer-events: none;
+    z-index: calc(var(--z-content) + 1);
+}
+
+/* Small scroll hint in the scrollbar area when content overflows */
+.terminal-output.has-overflow:not(.at-bottom)::after {
+    content: '⋯';
+    position: absolute;
+    bottom: 5px;
+    right: 2px;
+    color: var(--color-primary);
+    font-size: 12px;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: calc(var(--z-content) + 1);
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Custom Scrollbar Styling */
+.terminal-output::-webkit-scrollbar {
+    width: 6px;
+}
+
+.terminal-output::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+}
+
+.terminal-output::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+    border-radius: 3px;
+    transition: var(--transition-normal);
+}
+
+.terminal-output::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--color-secondary), var(--color-primary));
+    box-shadow: 0 0 8px rgba(0, 245, 255, 0.5);
+}
+
+/* Firefox Scrollbar */
+.terminal-output {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) rgba(0, 0, 0, 0.3);
 }
 
 .terminal-output pre {
@@ -212,6 +274,9 @@
     font-family: var(--font-mono);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-normal);
+    white-space: pre-wrap; /* Allow wrapping while preserving formatting */
+    word-wrap: break-word; /* Prevent horizontal overflow */
+    word-break: break-word; /* Break long words if needed */
 }
 
 .terminal-output code {
@@ -221,6 +286,9 @@
     font-family: inherit;
     font-size: inherit;
     color: var(--color-text-primary);
+    white-space: pre-wrap; /* Allow wrapping while preserving formatting */
+    word-wrap: break-word; /* Prevent horizontal overflow */
+    word-break: break-word; /* Break long words if needed */
 }
 
 /* Terminal Cursor */
@@ -305,4 +373,180 @@
     font-family: var(--font-mono);
     font-size: var(--font-size-sm);
     animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+/* CORRECTED Responsive adjustments - NO CONFLICTS */
+
+/* Tablet adjustments (769px and up to 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .terminal-content {
+        min-height: 320px;
+        max-height: 320px;
+    }
+    
+    .terminal-output {
+        min-height: 220px;
+        max-height: 220px;
+    }
+}
+
+/* Regular Mobile (481px to 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
+    .terminal-content {
+        min-height: 300px;
+        max-height: 300px;
+        padding: var(--space-sm);
+    }
+    
+    .terminal-output {
+        min-height: 200px;
+        max-height: 200px;
+    }
+
+    .terminal-title {
+        font-size: var(--font-size-sm);
+        max-width: 65%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+/* Small Mobile (321px to 480px) */
+@media (max-width: 480px) and (min-width: 321px) {
+    .terminal-content {
+        min-height: 280px;
+        max-height: 280px;
+        padding: var(--space-sm);
+    }
+    
+    .terminal-output {
+        min-height: 180px;
+        max-height: 180px;
+    }
+
+    /* Terminal header optimizations */
+    .terminal-header {
+        padding: var(--space-xs) var(--space-sm);
+    }
+
+    .terminal-title {
+        font-size: calc(var(--font-size-sm) * 0.85);
+        max-width: 55%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Smaller terminal buttons */
+    .terminal-button {
+        width: 10px;
+        height: 10px;
+    }
+
+    .terminal-controls {
+        gap: 6px;
+    }
+
+    /* Optimize sound toggle */
+    .sound-toggle {
+        width: 20px;
+        height: 20px;
+    }
+
+    .sound-toggle svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* Terminal prompt adjustments */
+    .terminal-prompt {
+        font-size: calc(var(--font-size-sm) * 0.9);
+        gap: 2px;
+    }
+
+    /* Status text smaller */
+    .terminal-status {
+        font-size: calc(var(--font-size-xs) * 0.9);
+    }
+}
+
+/* Extra Small Mobile (320px and below) */
+@media (max-width: 320px) {
+    .terminal-content {
+        min-height: 260px;
+        max-height: 260px;
+        padding: 8px;
+    }
+    
+    .terminal-output {
+        min-height: 160px;
+        max-height: 160px;
+        padding-right: 6px;
+    }
+
+    /* Critical terminal header space optimization */
+    .terminal-header {
+        padding: 6px 8px;
+    }
+
+    .terminal-title {
+        font-size: calc(var(--font-size-sm) * 0.75);
+        max-width: 45%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Minimal terminal buttons */
+    .terminal-button {
+        width: 8px;
+        height: 8px;
+    }
+
+    .terminal-controls {
+        gap: 4px;
+    }
+
+    /* Compact sound toggle */
+    .sound-toggle {
+        width: 18px;
+        height: 18px;
+    }
+
+    .sound-toggle svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    /* Compact terminal prompt */
+    .terminal-prompt {
+        font-size: calc(var(--font-size-sm) * 0.8);
+        gap: 1px;
+        margin-bottom: 6px;
+    }
+
+    /* Smaller status section */
+    .terminal-status {
+        font-size: calc(var(--font-size-xs) * 0.8);
+        margin-top: 8px;
+        padding-top: 6px;
+    }
+
+    /* Optimize cursor for small screens */
+    .terminal-cursor {
+        width: 6px;
+        margin-left: 1px;
+    }
+
+    /* Scrollbar even thinner */
+    .terminal-output::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    /* Code text optimization */
+    .terminal-output code {
+        font-size: calc(var(--font-size-sm) * 0.85);
+        line-height: 1.4;
+    }
 }

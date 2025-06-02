@@ -1,11 +1,12 @@
 /**
- * Main Application Script
+ * Main Application Script - Updated with Content Panel Controller
  * Initializes all components and handles global functionality
  */
 
 class DanNicCosApp {
     constructor() {
         this.terminalController = null;
+        this.contentPanelController = null; // NEW: Content panel controller
         this.isInitialized = false;
         
         this.init();
@@ -35,8 +36,11 @@ class DanNicCosApp {
     }
 
     initializeComponents() {
-        // Initialize terminal controller (replaces video controller)
+        // Initialize terminal controller
         this.initTerminalController();
+        
+        // NEW: Initialize content panel controller
+        this.initContentPanelController();
         
         // Initialize any quote rotation if utils.ts is available
         this.initQuoteRotation();
@@ -57,6 +61,22 @@ class DanNicCosApp {
             console.log('✅ Terminal controller initialized');
         } catch (error) {
             console.warn('⚠️ Terminal controller initialization failed:', error.message);
+        }
+    }
+
+    // NEW: Initialize content panel controller
+    initContentPanelController() {
+        try {
+            // The ContentPanelController initializes itself on DOMContentLoaded
+            // We just need to store a reference if it exists
+            setTimeout(() => {
+                if (window.contentPanelController) {
+                    this.contentPanelController = window.contentPanelController;
+                    console.log('✅ Content panel controller initialized');
+                }
+            }, 100);
+        } catch (error) {
+            console.warn('⚠️ Content panel controller initialization failed:', error.message);
         }
     }
 
@@ -290,6 +310,23 @@ class DanNicCosApp {
     // Public API
     getTerminalController() {
         return this.terminalController;
+    }
+
+    // NEW: Content panel control methods
+    getContentPanelController() {
+        return this.contentPanelController;
+    }
+
+    expandContentPanel() {
+        if (this.contentPanelController) {
+            this.contentPanelController.expand();
+        }
+    }
+
+    collapseContentPanel() {
+        if (this.contentPanelController) {
+            this.contentPanelController.collapse();
+        }
     }
 
     isReady() {
