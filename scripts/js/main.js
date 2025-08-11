@@ -7,6 +7,7 @@ class DanNicCosApp {
     constructor() {
         this.terminalController = null;
         this.contentPanelController = null; // NEW: Content panel controller
+        this.projectsController = null; // NEW: Projects controller
         this.isInitialized = false;
         
         this.init();
@@ -41,6 +42,9 @@ class DanNicCosApp {
         
         // NEW: Initialize content panel controller
         this.initContentPanelController();
+        
+        // NEW: Initialize projects controller
+        this.initProjectsController();
         
         // Initialize any quote rotation if utils.ts is available
         this.initQuoteRotation();
@@ -77,6 +81,22 @@ class DanNicCosApp {
             }, 100);
         } catch (error) {
             console.warn('⚠️ Content panel controller initialization failed:', error.message);
+        }
+    }
+
+    // NEW: Initialize projects controller
+    initProjectsController() {
+        try {
+            // The ProjectsController initializes itself on DOMContentLoaded
+            // We just need to store a reference if it exists
+            setTimeout(() => {
+                if (window.projectsController) {
+                    this.projectsController = window.projectsController;
+                    console.log('✅ Projects controller initialized');
+                }
+            }, 150);
+        } catch (error) {
+            console.warn('⚠️ Projects controller initialization failed:', error.message);
         }
     }
 
@@ -326,6 +346,29 @@ class DanNicCosApp {
     collapseContentPanel() {
         if (this.contentPanelController) {
             this.contentPanelController.collapse();
+        }
+    }
+
+    // NEW: Projects control methods
+    getProjectsController() {
+        return this.projectsController;
+    }
+
+    nextProject() {
+        if (this.projectsController) {
+            this.projectsController.nextProject();
+        }
+    }
+
+    previousProject() {
+        if (this.projectsController) {
+            this.projectsController.previousProject();
+        }
+    }
+
+    goToProject(index) {
+        if (this.projectsController) {
+            this.projectsController.goToProject(index);
         }
     }
 
