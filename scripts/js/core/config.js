@@ -127,7 +127,7 @@ export const APP_CONFIG = {
 
 // Environment detection
 export const ENV = {
-    isDevelopment: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1',
+    isDevelopment: (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && !window.location.search.includes('production=true'),
     isProduction: window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1',
     supportsModules: 'noModule' in HTMLScriptElement.prototype,
     supportsLocalStorage: (() => {

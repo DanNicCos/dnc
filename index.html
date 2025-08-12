@@ -3,25 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DanNicCos</title>
+    <title>DanNicCos - Portfolio</title>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
     
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="styles/css/reset.css">
-    <link rel="stylesheet" href="styles/css/variables.css">
-    <link rel="stylesheet" href="styles/css/components.css">
-    <link rel="stylesheet" href="styles/css/layout.css">
-    <link rel="stylesheet" href="styles/css/animations.css">
-    <link rel="stylesheet" href="styles/css/responsive.css">
-    <!-- Terminal Styles -->
-    <link rel="stylesheet" href="styles/css/terminal/terminal.css">
-    <link rel="stylesheet" href="styles/css/terminal/syntax-themes.css">
-    <link rel="stylesheet" href="styles/css/terminal/cursor-animations.css">
-    <!-- Projects Styles -->
-    <link rel="stylesheet" href="styles/css/projects.css">
+    <style>
+        /* Force dark theme with working CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: rgba(255, 255, 255, 0.9);
+            font-family: 'Space Grotesk', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 245, 255, 0.2);
+            padding: 1rem 2rem;
+        }
+        
+        .header__content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header__left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo__placeholder {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: black;
+        }
+        
+        .brand-name {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .home-icon {
+            background: none;
+            border: 2px solid rgba(0, 245, 255, 0.3);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .home-icon:hover {
+            border-color: #00f5ff;
+            box-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
+        }
+        
+        .home-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #00f5ff;
+        }
+        
+        .social-bar {
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+        
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(0, 245, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            border-color: #00f5ff;
+            box-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
+        }
+        
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: #00f5ff;
+        }
+        
+        .main-content {
+            max-width: 800px;
+            margin: 100px auto 0;
+            padding: 2rem;
+        }
+        
+        .intro-section h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .intro-section p {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        
+        .show-more-btn {
+            display: block;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #00f5ff, #ff00ff);
+            border: none;
+            border-radius: 8px;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .show-more-btn:hover {
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .expanded-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .expanded-content.show {
+            max-height: 1000px;
+        }
+        
+        .expanded-content p {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .social-bar {
+                position: static;
+                transform: none;
+                padding: 1rem;
+                text-align: center;
+            }
+            
+            .social-links {
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .main-content {
+                margin-top: 80px;
+                padding: 1rem;
+            }
+            
+            .intro-section h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header Navigation -->
@@ -49,205 +242,61 @@
         <nav class="social-links" aria-label="Social media links">
             <a href="https://github.com/DanNicCos" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>
             </a>
-            <a href="https://x.com/DanNicCos" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)">
+            <a href="https://linkedin.com/in/danniccos" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-            </a>
-            <a href="https://dnccoding.substack.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Substack">
-                <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <title>Substack</title>
-                    <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                 </svg>
             </a>
         </nav>
     </div>
 
-    <!-- Main Content Container -->
+    <!-- Main Content -->
     <main class="main-content">
-        <!-- Interactive Terminal Section -->
-        <section class="terminal-showcase">
-            <div class="terminal-container" id="terminalContainer">
-                <!-- Terminal Header -->
-                <div class="terminal-header">
-                    <div class="terminal-controls">
-                        <span class="terminal-button close"></span>
-                        <span class="terminal-button minimize"></span>
-                        <span class="terminal-button maximize"></span>
-                    </div>
-                    <div class="terminal-title">
-                        <span id="terminalTitle">~/projects/ai-experiments</span>
-                    </div>
-                    <div class="terminal-actions">
-                        <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+        <section class="intro-section">
+            <h1>DanNicCos</h1>
+            <p>Full-stack Developer & AI Engineer</p>
+            
+            <div class="content-panel">
+                <button class="show-more-btn" id="showMoreBtn" aria-expanded="false" aria-controls="expandedContent">
+                    Show More ▼
+                </button>
                 
-                <!-- Terminal Content -->
-                <div class="terminal-content">
-                    <div class="terminal-prompt">
-                        <span class="prompt-user">danniccos</span>
-                        <span class="prompt-separator">@</span>
-                        <span class="prompt-host">macbook</span>
-                        <span class="prompt-path">~/projects</span>
-                        <span class="prompt-symbol">$</span>
-                    </div>
-                    <div class="terminal-output">
-                        <pre><code id="codeOutput" class="language-javascript"></code></pre>
-                        <span class="terminal-cursor" id="terminalCursor">|</span>
-                    </div>
-                    <div class="terminal-status">
-                        <span class="status-text">Click anywhere to see next project</span>
-                        <span class="status-indicator" id="statusIndicator">●</span>
-                    </div>
+                <div class="expanded-content" id="expandedContent" aria-hidden="true">
+                    <p>
+                        Currently engineering intelligence while wondering how to live a full life. 
+                        The jury's still out on both.
+                    </p>
                 </div>
             </div>
         </section>
-
-        <!-- Projects Showcase Section -->
-        <section class="projects-showcase" id="projectsShowcase">
-            <div class="projects-container" id="projectsContainer">
-                <!-- Projects Header -->
-                <div class="projects-header">
-                    <div class="projects-title-section">
-                        <h2 class="projects-title">Featured Projects</h2>
-                        <p class="projects-subtitle">~/engineering-portfolio --show-featured</p>
-                    </div>
-                    <div class="projects-counter">
-                        <span id="currentProjectNum">01</span> / <span id="totalProjectsNum">03</span>
-                    </div>
-                </div>
-
-                <!-- Current Project Display -->
-                <div class="current-project">
-                    <div class="project-card" tabindex="0" role="button" aria-label="View project details">
-                        <div class="project-status">Production</div>
-                        <h3 class="project-title">Loading...</h3>
-                        <p class="project-subtitle">AI Engineering Project</p>
-                        <p class="project-description">Loading project details...</p>
-                        
-                        <!-- Tech Stack -->
-                        <div class="tech-stack" aria-label="Technologies used"></div>
-                        
-                        <!-- Project Metrics -->
-                        <div class="project-metrics" aria-label="Project metrics"></div>
-                        
-                        <!-- Expand Button -->
-                        <button class="expand-project-btn" id="expandProjectBtn" aria-expanded="false" aria-controls="projectDetails">
-                            <span class="btn-text">
-                                <span class="prompt-symbol">&gt;</span>
-                                <span class="btn-label">show --details</span>
-                            </span>
-                            <span class="btn-icon" aria-hidden="true">▼</span>
-                        </button>
-                        
-                        <!-- Expanded Project Details -->
-                        <div class="project-details" id="projectDetails" aria-hidden="true"></div>
-                    </div>
-                </div>
-
-                <!-- Projects Navigation -->
-                <div class="projects-navigation">
-                    <div class="project-nav">
-                        <button class="prev-project" aria-label="Previous project">◀ prev</button>
-                        <button class="next-project" aria-label="Next project">next ▶</button>
-                    </div>
-                    
-                    <div class="navigation-dots" aria-label="Project navigation"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Content Panel with Gradient Transition -->
-        <div class="panel-content">
-            <!-- Main Content Summary -->
-            <div class="content-summary">
-                <h1 class="main-title">AI Engineer</h1>
-                <div class="subtitle-signature-row">
-                    <p class="main-subtitle">Building useful tools, documenting the journey</p>
-                    <div class="signature">
-                        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(45)" class="signature__icon">
-                            <path d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"/>
-                        </svg> 
-                        <span class="signature__name">Nic</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Show More Button -->
-            <button class="show-more-btn" id="showMoreBtn" aria-expanded="false" aria-controls="expandedContent">
-                <span class="btn-text">
-                    <span class="prompt-symbol">&gt;</span>
-                    <span class="btn-label">show --details</span>
-                </span>
-                <span class="btn-icon" aria-hidden="true">▼</span>
-            </button>
-
-            <!-- Expanded Content (Hidden by default) -->
-            <div class="expanded-content" id="expandedContent" aria-hidden="true">
-                <div class="about-text">
-                    I spend my days trying to figure out AI and how to partner with it to build useful stuff. 
-                    Turns out computers are great at thinking but terrible at explaining themselves—which makes two of us.
-                    An adult who hasn't figured a lot of things out, but I've learned that failure is just expensive information. 
-                    Writing about the messy, human side of building with AI <a href="https://dnccoding.substack.com/" target="_blank" rel="noopener noreferrer">here</a>, and sharing half-formed thoughts <a href="https://x.com/DanNicCos" target="_blank" rel="noopener noreferrer">here</a>.
-                    Currently engineering intelligence while wondering how to live a full life. 
-                    The jury's still out on both.
-                </div>
-            </div>
-        </div>
     </main>
 
-    <!-- Scripts -->
-    <script src="scripts/js/terminal/sound-manager.js"></script>
-    <script src="scripts/js/terminal/code-snippets.js"></script>
-    <script src="scripts/js/terminal/typing-engine.js"></script>
-    <script src="scripts/js/terminal/terminal-controller.js"></script>
-    <script src="scripts/js/projects-data.js"></script>
-    <script src="scripts/js/projects-controller.js"></script>
-    <script src="scripts/js/content-panel-standalone.js"></script>
-    <!-- Modern Modular System with Error Handling -->
-    <script type="module">
-        // Feature detection for ES6 modules
-        import('./scripts/js/main-refactored.js')
-            .then(module => {
-                console.log('✅ Modular portfolio system loaded successfully');
-            })
-            .catch(error => {
-                console.error('❌ Module system failed:', error);
-                console.warn('⚠️ Loading legacy fallback system...');
-                
-                // Fallback to legacy main
-                const script = document.createElement('script');
-                script.src = 'scripts/js/main-legacy-backup.js';
-                script.onerror = () => {
-                    console.error('❌ Legacy fallback also failed');
-                    // Show user-friendly error
-                    document.body.innerHTML = '<div style="padding: 2rem; text-align: center; font-family: Arial;"><h2>Loading Error</h2><p>Please refresh the page</p></div>';
-                };
-                document.head.appendChild(script);
-            });
-    </script>
-    
-    <!-- Emergency CSS Reset and Background Fix -->
+    <!-- Simple Content Panel Script -->
     <script>
-        // Force correct background styling
-        setTimeout(() => {
-            // Ensure body has correct background
-            document.body.style.background = 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)';
-            document.body.style.minHeight = '100vh';
+        const showMoreBtn = document.getElementById('showMoreBtn');
+        const expandedContent = document.getElementById('expandedContent');
+        let isExpanded = false;
+
+        showMoreBtn.addEventListener('click', function() {
+            isExpanded = !isExpanded;
             
-            // Remove any error styling
-            if (document.documentElement.style.background) {
-                document.documentElement.style.background = '';
+            if (isExpanded) {
+                expandedContent.classList.add('show');
+                showMoreBtn.textContent = 'Show Less ▲';
+                showMoreBtn.setAttribute('aria-expanded', 'true');
+                expandedContent.setAttribute('aria-hidden', 'false');
+            } else {
+                expandedContent.classList.remove('show');
+                showMoreBtn.textContent = 'Show More ▼';
+                showMoreBtn.setAttribute('aria-expanded', 'false');
+                expandedContent.setAttribute('aria-hidden', 'true');
             }
-        }, 50);
+        });
+        
+        console.log('✅ Fixed portfolio version loaded successfully');
     </script>
 </body>
 </html>
