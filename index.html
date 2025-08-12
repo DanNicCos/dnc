@@ -235,17 +235,19 @@
             });
     </script>
     
-    <!-- Emergency CSS Reset for Error Cases -->
+    <!-- Emergency CSS Reset and Background Fix -->
     <script>
-        // Remove any error styling that might cause red background
+        // Force correct background styling
         setTimeout(() => {
-            if (document.body.style.background) {
-                document.body.style.background = '';
-            }
+            // Ensure body has correct background
+            document.body.style.background = 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)';
+            document.body.style.minHeight = '100vh';
+            
+            // Remove any error styling
             if (document.documentElement.style.background) {
                 document.documentElement.style.background = '';
             }
-        }, 100);
+        }, 50);
     </script>
 </body>
 </html>
