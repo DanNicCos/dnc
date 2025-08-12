@@ -211,7 +211,21 @@
     <script src="scripts/js/terminal/terminal-controller.js"></script>
     <script src="scripts/js/projects-data.js"></script>
     <script src="scripts/js/projects-controller.js"></script>
-    <script src="scripts/js/content-panel.js"></script>
-    <script src="scripts/js/main.js"></script>
+    <!-- Modern Modular System -->
+    <script type="module">
+        // Feature detection for ES6 modules
+        import('./scripts/js/main-refactored.js')
+            .then(module => {
+                console.log('✅ Modular portfolio system loaded successfully');
+            })
+            .catch(error => {
+                console.warn('⚠️ Modern module system not available, falling back to legacy system');
+                
+                // Fallback to legacy main
+                const script = document.createElement('script');
+                script.src = 'scripts/js/main-legacy-backup.js';
+                document.head.appendChild(script);
+            });
+    </script>
 </body>
 </html>
