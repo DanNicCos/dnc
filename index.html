@@ -211,7 +211,8 @@
     <script src="scripts/js/terminal/terminal-controller.js"></script>
     <script src="scripts/js/projects-data.js"></script>
     <script src="scripts/js/projects-controller.js"></script>
-    <!-- Modern Modular System -->
+    <script src="scripts/js/content-panel-standalone.js"></script>
+    <!-- Modern Modular System with Error Handling -->
     <script type="module">
         // Feature detection for ES6 modules
         import('./scripts/js/main-refactored.js')
@@ -219,13 +220,32 @@
                 console.log('✅ Modular portfolio system loaded successfully');
             })
             .catch(error => {
-                console.warn('⚠️ Modern module system not available, falling back to legacy system');
+                console.error('❌ Module system failed:', error);
+                console.warn('⚠️ Loading legacy fallback system...');
                 
                 // Fallback to legacy main
                 const script = document.createElement('script');
                 script.src = 'scripts/js/main-legacy-backup.js';
+                script.onerror = () => {
+                    console.error('❌ Legacy fallback also failed');
+                    // Show user-friendly error
+                    document.body.innerHTML = '<div style="padding: 2rem; text-align: center; font-family: Arial;"><h2>Loading Error</h2><p>Please refresh the page</p></div>';
+                };
                 document.head.appendChild(script);
             });
+    </script>
+    
+    <!-- Emergency CSS Reset for Error Cases -->
+    <script>
+        // Remove any error styling that might cause red background
+        setTimeout(() => {
+            if (document.body.style.background) {
+                document.body.style.background = '';
+            }
+            if (document.documentElement.style.background) {
+                document.documentElement.style.background = '';
+            }
+        }, 100);
     </script>
 </body>
 </html>
