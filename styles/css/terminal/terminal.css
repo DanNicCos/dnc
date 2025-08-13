@@ -2,9 +2,10 @@
 
 /* Terminal Showcase Container */
 .terminal-showcase {
-    /* width: 100%; */
-    width: var(--content-width);
-    margin-bottom: var(--space-xl);
+    width: 100%;
+    margin-bottom: var(--space-lg);
+    padding: 0 var(--space-md);
+    box-sizing: border-box;
 }
 
 /* Main Terminal Container - EXPANDED HEIGHT */
@@ -156,12 +157,12 @@
     opacity: 0.5;
 }
 
-/* Terminal Content - REDUCED HEIGHT */
+/* Terminal Content - Mobile First */
 .terminal-content {
-    padding: var(--space-md);
+    padding: var(--space-sm);
     background: rgba(0, 0, 0, 0.8);
-    min-height: 350px; /* REDUCED from 450px to 350px */
-    max-height: 350px; /* REDUCED from 450px to 350px */
+    min-height: 280px; /* Mobile height */
+    max-height: 280px; /* Mobile height */
     position: relative;
     z-index: var(--z-content);
     font-family: var(--font-mono);
@@ -201,14 +202,14 @@
     margin-left: var(--space-xs);
 }
 
-/* Terminal Output - REDUCED SCROLLABLE AREA */
+/* Terminal Output - Mobile First */
 .terminal-output {
     position: relative;
-    min-height: 220px; /* REDUCED from 320px to 220px */
-    max-height: 220px; /* REDUCED from 320px to 220px */
+    min-height: 180px; /* Mobile height */
+    max-height: 180px; /* Mobile height */
     overflow-y: auto; /* ENABLE vertical scrolling */
     overflow-x: hidden; /* Hide horizontal scroll */
-    padding-right: 8px; /* Space for scrollbar */
+    padding-right: 6px; /* Space for scrollbar */
     scroll-behavior: smooth; /* Smooth scrolling */
 }
 
@@ -375,178 +376,38 @@
     animation: pulse-glow 1.5s ease-in-out infinite;
 }
 
-/* CORRECTED Responsive adjustments - NO CONFLICTS */
+/* Mobile First Responsive Terminal */
 
-/* Tablet adjustments (769px and up to 1024px) */
-@media (max-width: 1024px) and (min-width: 769px) {
+/* Tablet */
+@media screen and (min-width: 768px) {
+    .terminal-showcase {
+        width: var(--content-width);
+        margin-bottom: var(--space-xl);
+        padding: 0;
+    }
+    
     .terminal-content {
         min-height: 320px;
         max-height: 320px;
+        padding: var(--space-md);
     }
     
     .terminal-output {
         min-height: 220px;
         max-height: 220px;
+        padding-right: 8px;
     }
 }
 
-/* Regular Mobile (481px to 768px) */
-@media (max-width: 768px) and (min-width: 481px) {
+/* Desktop */
+@media screen and (min-width: 1024px) {
     .terminal-content {
-        min-height: 300px;
-        max-height: 300px;
-        padding: var(--space-sm);
+        min-height: 350px;
+        max-height: 350px;
     }
     
     .terminal-output {
-        min-height: 200px;
-        max-height: 200px;
-    }
-
-    .terminal-title {
-        font-size: var(--font-size-sm);
-        max-width: 65%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-}
-
-/* Small Mobile (321px to 480px) */
-@media (max-width: 480px) and (min-width: 321px) {
-    .terminal-content {
-        min-height: 280px;
-        max-height: 280px;
-        padding: var(--space-sm);
-    }
-    
-    .terminal-output {
-        min-height: 180px;
-        max-height: 180px;
-    }
-
-    /* Terminal header optimizations */
-    .terminal-header {
-        padding: var(--space-xs) var(--space-sm);
-    }
-
-    .terminal-title {
-        font-size: calc(var(--font-size-sm) * 0.85);
-        max-width: 55%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    /* Smaller terminal buttons */
-    .terminal-button {
-        width: 10px;
-        height: 10px;
-    }
-
-    .terminal-controls {
-        gap: 6px;
-    }
-
-    /* Optimize sound toggle */
-    .sound-toggle {
-        width: 20px;
-        height: 20px;
-    }
-
-    .sound-toggle svg {
-        width: 14px;
-        height: 14px;
-    }
-
-    /* Terminal prompt adjustments */
-    .terminal-prompt {
-        font-size: calc(var(--font-size-sm) * 0.9);
-        gap: 2px;
-    }
-
-    /* Status text smaller */
-    .terminal-status {
-        font-size: calc(var(--font-size-xs) * 0.9);
-    }
-}
-
-/* Extra Small Mobile (320px and below) */
-@media (max-width: 320px) {
-    .terminal-content {
-        min-height: 260px;
-        max-height: 260px;
-        padding: 8px;
-    }
-    
-    .terminal-output {
-        min-height: 160px;
-        max-height: 160px;
-        padding-right: 6px;
-    }
-
-    /* Critical terminal header space optimization */
-    .terminal-header {
-        padding: 6px 8px;
-    }
-
-    .terminal-title {
-        font-size: calc(var(--font-size-sm) * 0.75);
-        max-width: 45%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    /* Minimal terminal buttons */
-    .terminal-button {
-        width: 8px;
-        height: 8px;
-    }
-
-    .terminal-controls {
-        gap: 4px;
-    }
-
-    /* Compact sound toggle */
-    .sound-toggle {
-        width: 18px;
-        height: 18px;
-    }
-
-    .sound-toggle svg {
-        width: 12px;
-        height: 12px;
-    }
-
-    /* Compact terminal prompt */
-    .terminal-prompt {
-        font-size: calc(var(--font-size-sm) * 0.8);
-        gap: 1px;
-        margin-bottom: 6px;
-    }
-
-    /* Smaller status section */
-    .terminal-status {
-        font-size: calc(var(--font-size-xs) * 0.8);
-        margin-top: 8px;
-        padding-top: 6px;
-    }
-
-    /* Optimize cursor for small screens */
-    .terminal-cursor {
-        width: 6px;
-        margin-left: 1px;
-    }
-
-    /* Scrollbar even thinner */
-    .terminal-output::-webkit-scrollbar {
-        width: 4px;
-    }
-
-    /* Code text optimization */
-    .terminal-output code {
-        font-size: calc(var(--font-size-sm) * 0.85);
-        line-height: 1.4;
+        min-height: 250px;
+        max-height: 250px;
     }
 }

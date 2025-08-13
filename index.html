@@ -20,6 +20,17 @@
     <link rel="stylesheet" href="styles/css/terminal/syntax-themes.css">
     <link rel="stylesheet" href="styles/css/projects.css">
     <link rel="stylesheet" href="styles/css/responsive.css">
+    
+    <!-- Critical CSS Fallback -->
+    <style>
+        /* Fallback styles in case external CSS doesn't load */
+        body { 
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); 
+            color: rgba(255, 255, 255, 0.9);
+            font-family: 'Space Grotesk', sans-serif;
+            min-height: 100vh;
+        }
+    </style>
 </head>
 <body>
     <!-- Header Navigation -->
@@ -60,37 +71,38 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Content Panel with improved design -->
-        <section class="content-panel">
-            <div class="panel-content">
-                <div class="content-summary">
-                    <h1 class="main-title">DanNicCos</h1>
-                    <div class="subtitle-signature-row">
-                        <p class="main-subtitle">Full-stack Developer & AI Engineer</p>
-                        <div class="signature">
-                            <svg class="signature__icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-header">
+                    <h1 class="hero-title">
+                        <span class="hero-name">DanNicCos</span>
+                        <span class="hero-accent">_</span>
+                    </h1>
+                    <div class="hero-signature">
+                        <span class="hero-role">Full-stack Developer & AI Engineer</span>
+                        <div class="verification-badge">
+                            <svg class="verification-icon" viewBox="0 0 24 24">
                                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
-                            <span class="signature__name">Verified</span>
+                            <span>Verified</span>
                         </div>
                     </div>
                 </div>
                 
-                <button class="show-more-btn" id="showMoreBtn" aria-expanded="false" aria-controls="expandedContent">
-                    <span class="btn-text">
-                        <span class="prompt-symbol">$</span>
-                        <span class="btn-label">cat about.md</span>
-                        <span class="btn-icon">▼</span>
-                    </span>
+                <div class="hero-tagline">
+                    <p>Engineering intelligence. Crafting experiences. Building futures.</p>
+                </div>
+                
+                <button class="hero-expand" id="heroExpand" aria-expanded="false">
+                    <span class="expand-prompt">$ cat about.md</span>
+                    <span class="expand-arrow">↓</span>
                 </button>
                 
-                <div class="expanded-content" id="expandedContent" aria-hidden="true">
-                    <div class="about-text">
-                        Currently engineering intelligence while wondering how to live a full life. 
-                        The jury's still out on both.
-                        <br><br>
-                        I build AI-powered applications, modern web experiences, and scalable systems. 
-                        Always exploring the intersection of technology and human creativity.
+                <div class="hero-details" id="heroDetails" aria-hidden="true">
+                    <div class="details-content">
+                        <p>Currently engineering intelligence while wondering how to live a full life. The jury's still out on both.</p>
+                        <p>I build AI-powered applications, modern web experiences, and scalable systems. Always exploring the intersection of technology and human creativity.</p>
                     </div>
                 </div>
             </div>
@@ -135,8 +147,28 @@
                 </div>
             </div>
         </section>
+
+        <!-- Projects Section -->
+        <section class="projects-section" id="projectsSection">
+            <div class="projects-header">
+                <h2 class="section-title">
+                    <span class="title-prefix">~/</span>
+                    <span class="title-text">projects</span>
+                    <span class="title-cursor">_</span>
+                </h2>
+                <p class="section-subtitle">AI-powered systems that matter</p>
+            </div>
+            
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be dynamically loaded -->
+            </div>
+        </section>
     </main>
 
+    <!-- Core Controllers -->
+    <script src="scripts/js/hero-controller.js"></script>
+    <script src="scripts/js/projects-renderer.js" type="module"></script>
+    
     <!-- Modern ES6 Module Loading -->
     <script type="module">
         // Modern ES6 module loading with fallback

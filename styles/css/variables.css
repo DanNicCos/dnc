@@ -19,6 +19,7 @@
     
     /* Typography */
     --font-primary: 'Space Grotesk', sans-serif;
+    --font-text: 'Space Grotesk', sans-serif;
     --font-display: 'Orbitron', monospace;
     --font-mono: 'Courier Prime', monospace;
     
@@ -48,11 +49,11 @@
     --space-2xl: 3rem;
     --space-3xl: 4rem;
     
-    /* Layout - CONSISTENT ON ALL SCREEN SIZES */
-    --content-width: 35%;
-    --header-height: 85px;
-    --social-bar-height: 60px;
-    --social-spacing: 1.5rem;
+    /* Layout - Mobile First */
+    --content-width: 95%; /* Mobile default */
+    --header-height: 70px; /* Reduced for mobile */
+    --social-bar-height: 50px; /* Reduced for mobile */
+    --social-spacing: 1rem;
     
     --border-radius-sm: 8px;
     --border-radius-md: 12px;
@@ -86,17 +87,38 @@
     --z-social-bar: 999;
 }
 
-/* NO RESPONSIVE BREAKPOINTS - Everything stays the same size */
+/* Mobile First Responsive Breakpoints */
 
-/* Responsive Width Breakpoints */
-@media screen and (max-width: 1199px) and (min-width: 768px) {
+/* Tablet and small desktop */
+@media screen and (min-width: 768px) {
     :root {
-        --content-width: 60%; /* Tablet - balanced readability */
+        --content-width: 75%; /* Tablet - better readability */
+        --header-height: 80px;
+        --social-bar-height: 55px;
+        --social-spacing: 1.25rem;
     }
 }
 
-@media screen and (max-width: 767px) {
+/* Large tablet and desktop */
+@media screen and (min-width: 1024px) {
     :root {
-        --content-width: 95%; /* Mobile - maximum readability */
+        --content-width: 65%; /* Large tablet - balanced */
+        --header-height: 85px;
+        --social-bar-height: 60px;
+        --social-spacing: 1.5rem;
+    }
+}
+
+/* Desktop */
+@media screen and (min-width: 1200px) {
+    :root {
+        --content-width: 50%; /* Desktop - narrower for readability */
+    }
+}
+
+/* Large desktop */
+@media screen and (min-width: 1600px) {
+    :root {
+        --content-width: 40%; /* Large desktop - optimal reading width */
     }
 }

@@ -1,182 +1,88 @@
-/* Responsive Design Styles - Updated with Terminal Mobile Fix */
+/* Mobile First Responsive Design */
 
-/* Mobile Styles (Up to 768px) */
-@media screen and (max-width: 768px) {
-    /* Header Mobile Adjustments - positioning only */
-    .header {
-        padding: 0 var(--space-md);
-    }
+/* Base mobile styles are in the main CSS files */
 
-    .header__content {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 20px;
-        padding: var(--space-md) 0;
-        width: 100%;
-    }
-
+/* Tablet and above optimizations */
+@media screen and (min-width: 768px) {
     .header__left {
-        gap: 12px;
+        gap: 15px;
     }
-
-    /* Social Bar Mobile - align with header content */
+    
     .social-bar {
-        justify-content: flex-start;
-        width: calc(100% - 2 * var(--space-md));
-        left: var(--space-md);
-        transform: none;
-    }
-
-    /* Main Content Mobile - align with header and social bar */
-    .main-content {
-        padding: 0 var(--space-md);
-    }
-
-    /* Content Panel Mobile - remove extra margin since main-content has padding */
-    .content-panel {
-        margin: 0;
-        width: 100%;
-    }
-
-    /* NEW: Terminal Mobile Alignment - match header and social bar */
-    .terminal-showcase {
-        width: 100%; /* Full width of the main-content container */
-    }
-
-    .terminal-container {
-        width: 100%; /* Inherits width from terminal-showcase */
-    }
-
-    /* Terminal title adjustments for mobile */
-    .terminal-title {
-        font-size: calc(var(--font-size-sm) * 0.9);
-        max-width: 60%; /* Prevent overflow */
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        left: 50%;
+        transform: translateX(-50%);
+        width: var(--content-width);
     }
 }
 
-/* Small Mobile Styles (Up to 480px) - ENHANCED FOR TERMINAL */
+/* Small mobile specific adjustments */
 @media screen and (max-width: 480px) {
-    .header {
-        padding: 0 var(--space-sm);
-    }
-
-    .header__content {
-        gap: 15px;
-        width: 100%;
-    }
-
     .header__left {
         gap: 10px;
     }
-
-    .social-bar {
-        justify-content: flex-start;
-        width: calc(100% - 2 * var(--space-sm));
-        left: var(--space-sm);
-        transform: none;
-    }
-
+    
     .social-links {
         gap: 10px;
     }
-
-    .main-content {
-        padding: 0 var(--space-sm); /* Matches header and social-bar padding */
-    }
-
-    .content-panel {
-        margin: 0;
-        width: 100%;
-    }
-
-    /* NEW: Terminal alignment for very small screens */
-    .terminal-showcase {
-        width: 100%; /* Matches main-content width */
-    }
-
-    .terminal-container {
-        width: 100%;
-    }
-
-    /* Enhanced terminal title for narrow screens */
+    
+    /* Terminal title for narrow screens */
     .terminal-title {
         font-size: calc(var(--font-size-sm) * 0.8);
-        max-width: 50%; /* More restrictive on small screens */
+        max-width: 50%;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-
-    /* Terminal header spacing optimization */
+    
+    /* Terminal header spacing */
     .terminal-header {
         padding: var(--space-xs) var(--space-sm);
     }
-
-    /* Terminal controls smaller on mobile */
+    
+    /* Smaller terminal controls */
     .terminal-button {
         width: 10px;
         height: 10px;
     }
-
-    /* Sound toggle smaller */
+    
+    .terminal-controls {
+        gap: 6px;
+    }
+    
     .sound-toggle {
         width: 20px;
         height: 20px;
     }
-
+    
     .sound-toggle svg {
         width: 14px;
         height: 14px;
     }
 }
 
-/* Extra Small Mobile (Up to 320px) - CRITICAL FIXES */
+/* Extra small mobile fixes */
 @media screen and (max-width: 320px) {
-    .header {
-        padding: 0 10px; /* Even tighter padding */
-    }
-
-    .social-bar {
-        width: calc(100% - 20px); /* Match header padding */
-        left: 10px;
-    }
-
-    .main-content {
-        padding: 0 10px; /* Match header and social-bar */
-    }
-
-    /* Terminal critical fixes for 320px */
+    /* Even more compact terminal title */
     .terminal-title {
         font-size: calc(var(--font-size-sm) * 0.75);
-        max-width: 45%; /* Very restrictive to prevent overflow */
+        max-width: 45%;
     }
-
-    /* Further optimize terminal header space */
-    .terminal-header {
-        padding: var(--space-xs) 8px;
-    }
-
-    /* Smaller terminal controls */
+    
+    /* Minimal terminal controls */
     .terminal-button {
         width: 8px;
         height: 8px;
     }
-
-    /* Adjust terminal controls gap */
+    
     .terminal-controls {
-        gap: 6px;
+        gap: 4px;
     }
-
-    /* Make sound toggle even smaller */
+    
     .sound-toggle {
         width: 18px;
         height: 18px;
     }
-
+    
     .sound-toggle svg {
         width: 12px;
         height: 12px;
